@@ -9,5 +9,5 @@ module.exports = mongoose.model('Event', {
     category: String,
     time_from: Date,
     time_to: Date,
-    attendees: Array
+    guest_list: Array
 });

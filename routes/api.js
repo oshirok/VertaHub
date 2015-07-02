@@ -3,6 +3,13 @@ var router = express.Router();
 var Event = require('../models/event.js')
 var Comment = require('../models/comment.js')
 
+/*
+ * The API Routes page
+ * Defines the routes for the API methods.
+ * 
+ * 
+ */
+
 /* GET events listing. */
 router.get('/events', function (req, res) {
     Event.find({}).sort({ timestamp: -1 }).exec(function (err, events) {
@@ -18,7 +25,7 @@ router.post('/events', function (req, res) {
     
     if (!req.body.name) return;
     Event.create({
-        timestamp: new Timestamp(),
+        timestamp: new Date().getTime(),
         name: req.body.name,
         desc: req.body.desc,
         time_from: req.body.time_from,
@@ -37,7 +44,7 @@ router.post('/events', function (req, res) {
     });
 });
 
-/* Attend an event */
+/* POST an attendee to an event */
 router.post('/attend', function (req, res) {
     if (!req.body.guest_name) return;
     Event.findByIdAndUpdate(req.body.event_id, { $push: { guest_list: req.body.guest_name } }, function (err, events) {

@@ -15,7 +15,7 @@ var app = express();
 // Connects to database
 mongoose.connect('mongodb://vhub:vhub@ds037252.mongolab.com:37252/vhub');
 
-// view engine setup
+// We don't need views
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
@@ -28,7 +28,7 @@ app.use(cookieParser());
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+// app.use('/', routes); We use our own index.html homepage
 app.use('/users', users);
 app.use('/api', api);
 
