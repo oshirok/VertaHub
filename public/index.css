@@ -20,6 +20,11 @@ md-content.md-default-theme {
   background-color: #fff;
 }
 
+.event-item {
+  max-width: 1000px;
+  margin: 0 auto 0 auto;
+}
+
 .s16 {
   
   font-size:24px;
