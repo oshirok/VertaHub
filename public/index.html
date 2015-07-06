@@ -2,6 +2,8 @@
 <head>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="index.css">
     <meta name="viewport" content="initial-scale=1" />
 </head>
 <body layout="column" ng-controller="AppCtrl">
@@ -15,12 +17,122 @@
     </md-toolbar>
     <div layout="row" flex>
         <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+            <md-list>
+                <md-input-container md-no-float>
+                    <md-icon md-font-icon="fa-search" class="fa s16 md-primary md-hue-2"></md-icon>
+                    <input ng-model="user.phone" type="text" placeholder="Search">
+                </md-input-container>
+                <md-subheader>Filter</md-subheader>
+                <md-item>
+                    <a>
+                        <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                            <div class="inset">
+                                <md-icon md-font-icon="fa-cutlery  " class="fa s16 md-primary md-hue-2"></md-icon>
+                            </div>
+                            <div class="inset">
+                                Food
+                            </div>
+                        </md-item-content>
+                    </a>
+                </md-item>
+                <md-item>
+                    <a>
+                        <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                            <div class="inset">
+                                <md-icon md-font-icon="fa-futbol-o" class="fa s16 md-primary md-hue-2"></md-icon>
+                            </div>
+                            <div class="inset">
+                                Sports
+                            </div>
+                        </md-item-content>
+                    </a>
+                </md-item>
+                <md-divider></md-divider>
+                <md-subheader>Sort</md-subheader>
+                <md-item>
+                    <a>
+                        <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                            <div class="inset">
+                                <md-icon md-font-icon="fa-calendar" class="fa s16 md-primary md-hue-2"></md-icon>
+                            </div>
+                            <div class="inset">
+                                Date
+                            </div>
+                        </md-item-content>
+                    </a>
+                </md-item>
+                <md-item>
+                    <a>
+                        <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                            <div class="inset">
+                                <md-icon md-font-icon="fa-users" class="fa s16 md-primary md-hue-2"></md-icon>
+                            </div>
+                            <div class="inset">
+                                Popularity
+                            </div>
+                        </md-item-content>
+                    </a>
+                </md-item>
+                </md-list>
 
-        </md-sidenav>
+</md-sidenav>
         <div layout="column" flex id="content">
             <md-content layout="column" flex class="md-padding">
+                <md-content class="md-padding">
 
-            </md-content>
+                    <md-toolbar md-scroll-shrink>
+                        <div class="md-toolbar-tools">
+                            <h3>
+                                <span>Friday</span>
+                            </h3>
+                        </div>
+                    </md-toolbar>
+                    <md-card class="md-card">
+                        <md-card-content>
+                            <h1 class="md-display-2"><i class="fa fa-cutlery"></i>Food Trucks: Poke to the Max and Ram Ribs</h1>
+                            <h2 class="md-headline">7 People Attending</h2>
+                            <h2 class="md-headline">11am - 12pm</h2>
+                            <h2 class="md-headline">North Creek Parkway</h2>
+                        </md-card-content>
+                        <div class="md-actions" layout="row" layout-align="end center">
+                            <md-button>Join</md-button>
+                        </div>
+                    </md-card>
+                    <md-toolbar md-scroll-shrink>
+                        <div class="md-toolbar-tools">
+                            <h3>
+                                <span>Saturday</span>
+                            </h3>
+                        </div>
+                    </md-toolbar>
+                    <md-card>
+                        <md-card-content>
+                            <h1 class="md-display-2"><i class="fa fa-calendar"></i>Food Trucks: Poke to the Max and Ram Ribs</h1>
+                            <h2 class="md-headline">7 People Attending</h2>
+                            <h2 class="md-headline">11am - 12pm</h2>
+                            <h2 class="md-headline">North Creek Parkway</h2>
+                        </md-card-content>
+                        <div class="md-actions" layout="row" layout-align="end center">
+                            <md-button>Join</md-button>
+                        </div>
+                    </md-card>
+                    <br />
+                    <md-card>
+                        <md-card-content>
+                            <h1 class="md-display-2">
+                                <i class="fa fa-futbol-o"></i>Ping Pong
+                            </h1>
+                            <h2 class="md-headline">3 People Attending</h2>
+                            <h2 class="md-headline">11am - 12pm</h2>
+                            <h2 class="md-headline">Vertafore Breakroom</h2>
+                        </md-card-content>
+                        <div class="md-actions" layout="row" layout-align="end center">
+                            <md-button>Join</md-button>
+                        </div>
+                    </md-card>
+                </md-content>
+
+</md-content>
         </div>
     </div>
     <!-- Angular Material Dependencies -->

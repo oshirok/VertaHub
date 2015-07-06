@@ -1,8 +1,27 @@
 ﻿body {
 }
 
+md-content.md-default-theme {
+  background-color: whitesmoke;
+}
+
 .md-toolbar-tools h1 {
   font-size: inherit;
   font-weight: inherit;
   margin: inherit;
+}
+
+.whiteframedemoBasicUsage md-whiteframe {
+  background: #fff;
+  margin: 20px;
+  padding: 20px; }
+
+.md-card {
+  background-color: #fff;
+}
+
+.s16 {
+  
+  font-size:24px;
+
 }

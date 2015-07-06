@@ -6,3 +6,12 @@ app.controller('AppCtrl', ['$scope', '$mdSidenav', function ($scope, $mdSidenav)
         };
  
     }]);
+
+
+app.config(function ($mdThemingProvider) {
+    $mdThemingProvider
+    .theme('default')
+    .primaryPalette('orange')
+    .accentPalette('pink')
+    .warnPalette('red')
+})
