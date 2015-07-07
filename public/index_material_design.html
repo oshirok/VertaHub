@@ -84,14 +84,17 @@
         </md-sidenav>
 			
 <!-- YO WARREN CHEN, GRID STARTS HERE -->
-<div class="grid" ng-controller="myGrid">
 
   <!-- THIS IS THE DYNAMIC POSTS BOX -->
-    <div class="grid-item grid-item--width2" ng-repeat="i in post_list">
-        {{i.name}}
+    <div layout="row" layout-wrap="absolute">
+        <md-card layout="column" class="md-card" ng-repeat="i in post_list">
+            <md-card-content>
+                <h2 class="md-title">{{i.name}}</h2>
+            </md-card-content>
+        </md-card>
     </div>
 
-  </div>
+
 
 <!-- YO IT ENDS HERE -->
 

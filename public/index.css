@@ -26,6 +26,13 @@ md-content.md-default-theme {
   margin: 0 auto 0 auto;
 }
 
+.md-card {
+    min-width: 280px;
+    width: 280px;
+    min-height: 200px;
+    height: 200px;
+}
+
 .s16 {
   
   font-size:24px;
