@@ -1,14 +1,43 @@
 ﻿var app = angular.module('StarterApp', ['ngMaterial']);
 
-app.controller('AppCtrl', ['$scope', '$mdSidenav', '$mdDialog', function ($scope, $mdSidenav, $mdDialog) {
+app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', function ($http, $scope, $mdSidenav, $mdDialog) {
         var alert;
+        var new_post;
         $scope.showDialog = showDialog;
-        $scope.items = [1, 2, 3];    
+        $scope.items = [1, 2, 3];
+        $scope.new_post = {};
         
+        $http.get('/api/posts')
+        .success(function (data) {
+            $scope.post_list = data;
+            console.log(data);
+			/*for(i in data){
+				console.log(i);
+				i.timestamp = new Date(parseInt(data.timestamp));
+			}
+            console.log(data);*/
+        })
+        .error(function (data) {
+            console.log('Error: ' + data);
+        });
 
         $scope.toggleSidenav = function (menuId) {
             $mdSidenav(menuId).toggle();
         };
+        
+        $scope.$on('posted', function (event, args) { 
+            console.log('broadcast recieved');
+            $http.get('/api/posts')
+            .success(function (data) {
+                    $scope.post_list = data;
+                    console.log(data);
+			    /*for(i in data){
+				    console.log(i);
+				    i.timestamp = new Date(parseInt(data.timestamp));
+			    }
+                console.log(data);*/
+                })
+        });
 
         function showDialog($event) {
             var parentEl = angular.element(document.querySelector('md-content'));
@@ -20,44 +49,32 @@ app.controller('AppCtrl', ['$scope', '$mdSidenav', '$mdDialog', function ($scope
                     '  <md-content>' +
                     '    <form name="userForm">' +
                     '       <md-input-container flex>' +
-                    '           <label>Event Name</label>' +
-                    '           <input ng-model="user.address">' +
+                    '           <label>Post Title</label>' +
+                    '           <input ng-model="ctrl.new_post.name">' +
                     '       </md-input-container>' +
                     '       <md-input-container flex>' +
                     '       <label>Decsription</label>' +
-                    '       <textarea ng-model="new_event.description" columns="1" md-maxlength="300"></textarea>' +
-                    '       </md-input-container>' +
-                    '       <md-input-container flex>' +
-                    '           <label>Start Time</label>' +
-                    '           <input ng-model="user.address">' +
-                    '       </md-input-container>' +
-                    '       <md-input-container flex>' +
-                    '           <label>End Time</label>' +
-                    '           <input ng-model="user.address">' +
-                    '       </md-input-container>' +
-                    '       <md-input-container flex>' +
-                    '           <label>Location</label>' +
-                    '           <input ng-model="user.address">' +
-                    '       </md-input-container>' +
-                    '       <md-input-container flex>' +
-                    '           <label>Category</label>' +
-                    '           <input ng-model="user.address">' +
-                    '       </md-input-container>' +
-                    '       <md-input-container flex>' +
-                    '           <label>Author</label>' +
-                    '           <input ng-model="user.address">' +
+                    '       <textarea ng-model="ctrl.new_post.desc" columns="1" md-maxlength="300"></textarea>' +
                     '       </md-input-container>' +
                     '    </form>' +
-                    '  </md-content>' +
-                    '  <div class="md-actions">' +
-                    '    <md-button ng-click="ctrl.closeDialog()">' +
+                    '  <div layout layout-sm="column" flex>' +
+                    '  <div class="md-actions" >' +
+                    '    <md-button flex ng-click="ctrl.submitDialog()">' +
+                    '      Submit' +
+                    '    </md-button>' +
+                    '  </div>' +
+                    '  <div class="md-actions" >' +
+                    '    <md-button flex ng-click="closeDialog()">' +
                     '      Close Greeting' +
                     '    </md-button>' +
+                    '  </div>' +
                     '  </div>' +
                     '</md-dialog>',
                 locals: {
                     items: $scope.items,
-                    closeDialog: $scope.closeDialog
+                    new_post: $scope.new_post,
+                    closeDialog: $scope.closeDialog,
+                    submitDialog: $scope.submitDialog
                 },
                 bindToController: true,
                 controllerAs: 'ctrl',
@@ -71,20 +88,33 @@ app.controller('AppCtrl', ['$scope', '$mdSidenav', '$mdDialog', function ($scope
             });
         }
 
-        $scope.closeDialog = function () {
-            $mdDialog.hide();
+        $scope.submitDialog = function () {
+            console.log('submit pressed!');
+            console.log($scope.new_post);
+            $http.post('/api/posts', $scope.new_post)
+                .success(function (data) {
+                // clear the form, allowing the user to send more messages
+                $scope.new_post = {};
+                $scope.post_list = data;
+                console.log(data);
+                $mdDialog.hide();
+            })
+                .error(function (data) {
+                console.log('Error: ' + data);
+            });
         };
+        
  
     }]);
 
 
-app.controller('DialogController', function ($scope, $mdDialog) {
+app.controller('DialogController', function ($http, $scope, $mdDialog) {
     //alert( this.closeDialog );
     //this.closeDialog = $scope.closeDialog;
 
-    /*$scope.closeDialog = function() {
+    $scope.closeDialog = function() {
       $mdDialog.hide();
-    };*/
+    };
 });
 
 app.controller('myCtrl', function($scope) {

@@ -93,20 +93,20 @@ router.get('/posts', function (req, res) {
 
 /* POST post*/
 router.post('/posts', function (req, res) {
-    
+    console.log(req.body);
     if (!req.body.name) return;
-    Event.create({
+    Post.create({
         timestamp: new Date().getTime(),
         last_updated: new Date().getTime(),
         name: req.body.name,
         desc: req.body.desc
-    });
-    
-    Post.find({}).sort({ timestamp: -1 }).exec(function (err, posts) {
-        if (err)
-            res.send(err);
-        //messages now shown from newest to oldest
-        res.json(posts);
+    }, function (err, messages) {
+        Post.find({}).sort({ timestamp: -1 }).exec(function (err, posts) {
+            if (err)
+                res.send(err);
+            //messages now shown from newest to oldest
+            res.json(posts);
+        });
     });
 });
 

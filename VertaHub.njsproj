@@ -33,6 +33,7 @@
     <Compile Include="app.js" />
     <Compile Include="models\comment.js" />
     <Compile Include="models\event.js" />
+    <Compile Include="models\post.js" />
     <Compile Include="public\index.js" />
     <Compile Include="routes\api.js" />
     <Compile Include="routes\index.js" />
