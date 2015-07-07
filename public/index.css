@@ -30,3 +30,43 @@ md-content.md-default-theme {
   font-size:24px;
 
 }
+
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+
+/* ---- grid ---- */
+
+.grid {
+  background: #DDD;
+  max-width: 1200px;
+}
+
+/* clear fix */
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- .grid-item ---- */
+
+.grid-item {
+  float: left;
+  width: 200px;
+  height: 200px;
+  background: #FFF;
+  border: 2px solid #333;
+  border-color: hsla(0, 0%, 0%, 0.7);
+}
+
+.grid-item--width2 { width: 400px; }
+
+
