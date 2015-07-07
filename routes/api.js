@@ -2,6 +2,7 @@
 var router = express.Router();
 var Event = require('../models/event.js')
 var Comment = require('../models/comment.js')
+var Post = require('../models/post.js')
 
 /*
  * The API Routes page
@@ -80,5 +81,33 @@ router.post('/events', function (req, res) {
     });
 });
 
+/* GET post listing. */
+router.get('/posts', function (req, res) {
+    Post.find({}).sort({ timestamp: -1 }).exec(function (err, posts) {
+        if (err)
+            res.send(err);
+        //messages now shown from newest to oldest
+        res.json(posts);
+    });
+});
+
+/* POST post*/
+router.post('/posts', function (req, res) {
+    
+    if (!req.body.name) return;
+    Event.create({
+        timestamp: new Date().getTime(),
+        last_updated: new Date().getTime(),
+        name: req.body.name,
+        desc: req.body.desc
+    });
+    
+    Post.find({}).sort({ timestamp: -1 }).exec(function (err, posts) {
+        if (err)
+            res.send(err);
+        //messages now shown from newest to oldest
+        res.json(posts);
+    });
+});
 
 module.exports = router;
