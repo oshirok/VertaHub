@@ -1,4 +1,5 @@
 ﻿<html lang="en" ng-app="StarterApp">
+
 <head>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
@@ -78,64 +79,34 @@
 
         </md-sidenav>
         <div layout="column" flex id="content">
-            <md-content id="eventlist" layout="column" flex class="md-padding">
-                <md-content id="eventlist" class="md-padding">
-                    <md-toolbar md-scroll-shrink class="event-item">
-                        <div class="md-toolbar-tools">
-                            <h3>
-                                <span>Friday</span>
-                            </h3>
-                        </div>
-                    </md-toolbar>
-                    <br />
-                    <md-card class="md-card event-item">
-                        <md-card-content>
-                            <h1 class="md-display-2">Food Trucks: Poke to the Max and Ram Ribs</h1>
-                            <h2 class="md-headline">7 People Attending</h2>
-                            <h2 class="md-headline">11am - 12pm</h2>
-                            <h2 class="md-headline">North Creek Parkway</h2>
-                        </md-card-content>
-                        <div class="md-actions" layout="row" layout-align="end center">
-                            <md-button>Join</md-button>
-                        </div>
-                    </md-card>
-                    <br />
-                    <md-toolbar md-scroll-shrink class="event-item">
-                        <div class="md-toolbar-tools">
-                            <h3>
-                                <span>Saturday</span>
-                            </h3>
-                        </div>
-                    </md-toolbar>
-                    <br />
-                    <md-card class="event-item">
-                        <md-card-content>
-                            <h1 class="md-display-2">Food Trucks: Poke to the Max and Ram Ribs</h1>
-                            <h2 class="md-headline">7 People Attending</h2>
-                            <h2 class="md-headline">11am - 12pm</h2>
-                            <h2 class="md-headline">North Creek Parkway</h2>
-                        </md-card-content>
-                        <div class="md-actions" layout="row" layout-align="end center">
-                            <md-button>Join</md-button>
-                        </div>
-                    </md-card>
-                    <br />
-                    <md-card class="event-item">
-                        <md-card-content>
-                            <h1 class="md-display-2">
-                                Ping Pong
-                            </h1>
-                            <h2 class="md-headline">3 People Attending</h2>
-                            <h2 class="md-headline">11am - 12pm</h2>
-                            <h2 class="md-headline">Vertafore Breakroom</h2>
-                        </md-card-content>
-                        <div class="md-actions" layout="row" layout-align="end center">
-                            <md-button>Join</md-button>
-                        </div>
-                    </md-card>
-                </md-content>
+            <h1>Today</h1>
+			
+<!-- YO WARREN CHEN, GRID STARTS HERE -->
+<div class="grid" ng-controller="myGrid">
 
-            </md-content>
+  <div class="grid-item grid-item--width2" ng-controller="myCtrl">
+	Name: <input type="text" ng-model="name"><br>
+	Title: <input type="text" ng-model="title"><br>
+	Description: <input type="text" ng-model="desc"><br>
+	Time: <input type="text" ng-model="time"><br>
+	<br>
+	Full Post: <br> {{name}} <br> {{title}} <br> {{desc}} <br> {{time}}
+	<button ng-click="addBox()">Add box! (Doesn't work)</button>
+  </div>
+
+  <!-- THIS IS THE DYNAMIC POSTS BOX -->
+  <div class="grid-item" ng-repeat="i in getPosts()">
+	{{i.name}} 
+	<br>
+	{{i.desc}}
+	<br>
+	{{i.location}}
+  </div>
+
+  </div>
+
+<!-- YO IT ENDS HERE -->
+
         </div>
     </div>
     <!-- Angular Material Dependencies -->
