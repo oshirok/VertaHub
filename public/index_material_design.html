@@ -77,7 +77,7 @@
                 </md-item>
 
                 <md-button class="md-fab" aria-label="Eat cake" ng-click="showDialog($event)">
-                    <md-icon md-svg-src="img/icons/cake.svg"></md-icon>
+                    <md-icon md-font-icon="fa-thumb-tack" class="fa s16 md-primary md-hue-2"></md-icon>
                 </md-button>
             </md-list>
 
@@ -86,12 +86,10 @@
 <!-- YO WARREN CHEN, GRID STARTS HERE -->
 <div class="grid" ng-controller="myGrid">
 
-
   <!-- THIS IS THE DYNAMIC POSTS BOX -->
-  <div class="grid-item" ng-repeat="i in post_list">
-
-	<h1 text-align="center">{{i.name}} </h1>
-  </div>
+    <div class="grid-item grid-item--width2" ng-repeat="i in post_list">
+        {{i.name}}
+    </div>
 
   </div>
 

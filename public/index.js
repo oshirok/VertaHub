@@ -204,7 +204,7 @@ app.config(function ($mdThemingProvider) {
     $mdThemingProvider
     .theme('default')
     .primaryPalette('vertaforeOrange')
-    .accentPalette('pink')
+    .accentPalette('vertaforeOrange')
     .warnPalette('red')
 })
 

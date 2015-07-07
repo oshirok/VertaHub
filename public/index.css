@@ -1,4 +1,5 @@
 ﻿body {
+    background-color: #dddddd;
 }
 
 md-content.md-default-theme {
@@ -29,6 +30,16 @@ md-content.md-default-theme {
   
   font-size:24px;
 
+}
+
+a.userLink {
+    width: 150px;
+    height: 150px;
+    display: table-cell;
+    vertical-align:middle;
+    text-align:center;
+    color: #000000;
+    text-decoration: none;
 }
 
 * {
@@ -63,10 +74,10 @@ body {
   width: 200px;
   height: 200px;
   background: #FFF;
-  border: 2px solid #333;
-  border-color: hsla(0, 0%, 0%, 0.7);
+  border: 6px solid #333;
+  border-color: #dddddd;
 }
 
-.grid-item--width2 { width: 400px; }
+.grid-item--width2 { width: 280px; }
 
 
