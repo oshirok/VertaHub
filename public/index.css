@@ -125,7 +125,7 @@ body {
 .gridListdemoDynamicTiles .red {
   background: #B90E2F; }
 .gridListdemoDynamicTiles .orange {
-  background-image: url("picnic.jpg"); }
+  background-image: url("img/picnic.jpg"); }
 .gridListdemoDynamicTiles md-grid-tile {
   transition: all 300ms ease-out 50ms; }
 .gridListdemoDynamicTiles md-grid-tile md-icon {
@@ -151,12 +151,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
   position:absolute;
 
   }
-  
+.gridListdemoDynamicTiles md-grid-tile-footer{
+
+}  
 .gridPad{
 	height:100%;
-	width:15px;
+	width:8px;
 }  
-  
+
 .dynamicBox{
 
 }

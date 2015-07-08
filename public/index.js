@@ -55,7 +55,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
                     '    <form name="userForm">' +
                     '       <md-input-container flex>' +
                     '           <label>Post Title</label>' +
-                    '           <input ng-model="ctrl.new_post.name" md-maxlength="50">' +
+                    '           <input ng-model="ctrl.new_post.name" md-maxlength="80">' +
                     '       </md-input-container>' +
                     '       <md-input-container flex>' +
                     '       <label>Decsription</label>' +
@@ -128,6 +128,34 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
 		$scope.name = name;
 		$scope.desc = desc;
             var parentEl = angular.element(document.querySelector('md-content'));
+			if($scope.name=="dance"){
+   alert = $mdDialog.alert({
+                parent: parentEl,
+                targetEvent: $event,
+                template:
+                    '<md-dialog aria-label="Sample Dialog">' +
+                    '  <md-content>' +
+                    '    <h1 text-align="center">{{ctrl.name}}</h1> <br>' +
+					'	 <h5>{{ctrl.desc}}</h5>' +
+					' <img src="img/disco.gif">' +
+                    '  <div class="md-actions" >' +
+                    '    <md-button flex ng-click="closeDialog()">' +
+                    '      Close' +
+                    '    </md-button>' +
+                    '  </div>' +
+                    '</md-dialog>',
+                locals: {
+					name: $scope.name,
+					desc: $scope.desc,
+                    closeDialog: $scope.closeDialog,
+                    submitDialog: $scope.submitDialog
+                },
+                bindToController: true,
+                controllerAs: 'ctrl',
+                controller: 'DialogController'
+            });
+			}
+			else{
             alert = $mdDialog.alert({
                 parent: parentEl,
                 targetEvent: $event,
@@ -152,7 +180,7 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
                 controllerAs: 'ctrl',
                 controller: 'DialogController'
             });
-            
+            }
             $mdDialog
               .show(alert)
               .finally(function () {
