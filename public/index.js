@@ -55,7 +55,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
                     '    <form name="userForm">' +
                     '       <md-input-container flex>' +
                     '           <label>Post Title</label>' +
-                    '           <input ng-model="ctrl.new_post.name">' +
+                    '           <input ng-model="ctrl.new_post.name" md-maxlength="50">' +
                     '       </md-input-container>' +
                     '       <md-input-container flex>' +
                     '       <label>Decsription</label>' +

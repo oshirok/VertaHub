@@ -125,7 +125,7 @@ body {
 .gridListdemoDynamicTiles .red {
   background: #B90E2F; }
 .gridListdemoDynamicTiles .orange {
-  background: #FF5200; }
+  background-image: url("picnic.jpg"); }
 .gridListdemoDynamicTiles md-grid-tile {
   transition: all 300ms ease-out 50ms; }
 .gridListdemoDynamicTiles md-grid-tile md-icon {
@@ -137,16 +137,18 @@ body {
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#333333',GradientType=0 ); /* IE6-9 */
 
   height: 100%; }
-.gridListdemoDynamicTiles md-grid-tile-footer figcaption {
+.gridListdemoDynamicTiles md-grid-tile-header figcaption {
+  height: 40px;
   width: 100%; 
 }
-.gridListdemoDynamicTiles md-grid-tile-footer figcaption h3 {
-  font-size: 26px;
-  margin: 10px 10px 10px 10px;
+.gridListdemoDynamicTiles md-grid-tile-header figcaption h3 {
+  font-size: 18px;
+
   font-weight: 700;
-  width: 100%;
+  width: 95%;
+  height: 100%;
   color: white;
-  position:relative;
+  position:absolute;
 
   }
   
