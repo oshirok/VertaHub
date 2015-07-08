@@ -1,6 +1,7 @@
 ﻿<html lang="en" ng-app="StarterApp">
 
 <head>
+	<link href="hover.css" rel="stylesheet" media="all">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -86,22 +87,24 @@
 <!-- YO WARREN CHEN, GRID STARTS HERE -->
 
   <!-- THIS IS THE DYNAMIC POSTS BOX -->
-
+		<div class="gridPad"></div>
         <div class="gridListdemoDynamicTiles" ng-controller="gridListDemoCtrl as vm" flex>
-            <md-grid-list md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6"
+            <md-grid-list md-cols-sm="2" md-cols-md="2" md-cols-gt-md="8"
                           md-row-height-gt-md="1:1" md-row-height="4:3"
-                          md-gutter="8px" md-gutter-gt-sm="4px">
-                <md-grid-tile class="thing" ng-repeat="post in post_list"
+                          md-gutter="8px" md-gutter-gt-sm="10px">
+                <md-grid-tile class="dynamicBox hvr-grow" ng-repeat="post in post_list"
                               md-rowspan="1"
-                              md-colspan="1"
+                              md-colspan="2"
                               md-colspan-sm="1"
                               ng-class="post.background">
                     <md-icon md-svg-icon="{{post.icon}}"></md-icon>
-                    <md-grid-tile-footer><h3>{{post.name}}</h3></md-grid-tile-footer>
+						<md-grid-tile-footer>
+							<br><br><h3>{{post.name}}</h3>
+						</md-grid-tile-footer>
                 </md-grid-tile>
             </md-grid-list>
         </div>
-
+		<div class="gridPad"></div>
 
 
 <!-- YO IT ENDS HERE -->

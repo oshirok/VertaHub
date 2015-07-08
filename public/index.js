@@ -12,7 +12,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
             $scope.post_list = data;
             
             console.log(data.length);
-            var colors = ["green", "darkBlue", "purple", "deepBlue", "yellow", "lightPurple", "pink", "red"];
+            var colors = ["red","blue","green","gray", "orange"];
             for (var i = 0; i < $scope.post_list.length; i++) {
                 $scope.post_list[i].background = colors[Math.floor((Math.random() * colors.length))];
                 console.log($scope.post_list[i].background);
@@ -103,7 +103,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
                 $scope.post_list = [];
                 $scope.post_list = data;
                 console.log(data);
-                var colors = ["green", "darkBlue", "purple", "deepBlue", "yellow", "lightPurple", "pink", "red"];
+                var colors = ["red","blue","green","gray", "orange"];
                 for (var i = 0; i < $scope.post_list.length; i++) {
                     $scope.post_list[i].background = colors[Math.floor((Math.random() * colors.length))];
                     console.log($scope.post_list[i].background);
@@ -157,6 +157,7 @@ app.controller('gridListDemoCtrl', function ($scope) {
         }
         return results;
     }
+	
 })
 
 app.config(function ($mdIconProvider) {
