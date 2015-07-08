@@ -86,13 +86,21 @@
 <!-- YO WARREN CHEN, GRID STARTS HERE -->
 
   <!-- THIS IS THE DYNAMIC POSTS BOX -->
-    <div layout="row" layout-wrap="absolute">
-        <md-card layout="column" class="md-card" ng-repeat="i in post_list">
-            <md-card-content>
-                <h2 class="md-title">{{i.name}}</h2>
-            </md-card-content>
-        </md-card>
-    </div>
+
+        <div class="gridListdemoDynamicTiles" ng-controller="gridListDemoCtrl as vm" flex>
+            <md-grid-list md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6"
+                          md-row-height-gt-md="1:1" md-row-height="4:3"
+                          md-gutter="8px" md-gutter-gt-sm="4px">
+                <md-grid-tile class="thing" ng-repeat="post in post_list"
+                              md-rowspan="1"
+                              md-colspan="1"
+                              md-colspan-sm="1"
+                              ng-class="post.background">
+                    <md-icon md-svg-icon="{{post.icon}}"></md-icon>
+                    <md-grid-tile-footer><h3>{{post.name}}</h3></md-grid-tile-footer>
+                </md-grid-tile>
+            </md-grid-list>
+        </div>
 
 
 
