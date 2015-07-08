@@ -141,13 +141,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
   width: 100%; 
 }
 .gridListdemoDynamicTiles md-grid-tile-footer figcaption h3 {
-  font-size: 28px;
+  font-size: 26px;
   margin: 10px 10px 10px 10px;
   font-weight: 700;
   width: 100%;
   color: white;
   position:relative;
-  padding 100px;
+
   }
   
 .gridPad{
