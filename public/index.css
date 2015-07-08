@@ -107,13 +107,13 @@ body {
 .gridListdemoDynamicTiles md-grid-list {
   margin: 8px; }
 .gridListdemoDynamicTiles .gray {
-  background: #f5f5f5; }
+  background: #53565A;}
 .gridListdemoDynamicTiles .green {
-  background: #b9f6ca; }
+  background: #009917;}
 .gridListdemoDynamicTiles .yellow {
   background: #ffff8d; }
 .gridListdemoDynamicTiles .blue {
-  background: #84ffff; }
+  background-color: #00A3E0; }
 .gridListdemoDynamicTiles .darkBlue {
   background: #80d8ff; }
 .gridListdemoDynamicTiles .deepBlue {
@@ -123,22 +123,38 @@ body {
 .gridListdemoDynamicTiles .lightPurple {
   background: #8c9eff; }
 .gridListdemoDynamicTiles .red {
-  background: #ff8a80; }
-.gridListdemoDynamicTiles .pink {
-  background: #ff80ab; }
+  background: #B90E2F; }
+.gridListdemoDynamicTiles .orange {
+  background: #FF5200; }
 .gridListdemoDynamicTiles md-grid-tile {
   transition: all 300ms ease-out 50ms; }
 .gridListdemoDynamicTiles md-grid-tile md-icon {
   padding-bottom: 32px; }
 .gridListdemoDynamicTiles md-grid-tile md-grid-tile-footer {
   background: rgba(0, 0, 0, 0.0);
+  
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+59,333333+100 */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#333333',GradientType=0 ); /* IE6-9 */
+
   height: 100%; }
 .gridListdemoDynamicTiles md-grid-tile-footer figcaption {
-  width: 100%; }
+  width: 100%; 
+}
 .gridListdemoDynamicTiles md-grid-tile-footer figcaption h3 {
-    color: black;
-  font-size: 36px;
-  margin: 0;
+  font-size: 28px;
+  margin: 10px 10px 10px 10px;
   font-weight: 700;
   width: 100%;
-  text-align: center; }
+  color: white;
+  position:relative;
+  padding 100px;
+  }
+  
+.gridPad{
+	height:100%;
+	width:15px;
+}  
+  
+.dynamicBox{
+
+}
