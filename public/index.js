@@ -113,10 +113,10 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
             console.log($scope.new_post);
             $http.post('/api/posts', $scope.new_post)
                 .success(function (data) {
+                $scope.post_list.length = 0;
+                $scope.post_list = data;
                 // clear the form, allowing the user to send more messages
                 $scope.new_post = {};
-                $scope.post_list = [];
-                $scope.post_list = data;
                 console.log(data);
                 var colors = ["orange","blue","green","gray", "red", "picnic"];
                 for (var i = 0; i < $scope.post_list.length; i++) {
@@ -215,28 +215,6 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
                 alert = undefined;
             });
         }
-
-        $scope.submitDialog = function () {
-            console.log('submit pressed!');
-            console.log($scope.new_post);
-            $http.post('/api/posts', $scope.new_post)
-                .success(function (data) {
-                // clear the form, allowing the user to send more messages
-                $scope.new_post = {};
-                $scope.post_list = [];
-                $scope.post_list = data;
-                console.log(data);
-                var colors = ["red","blue","green","gray", "orange"];
-                for (var i = 0; i < $scope.post_list.length; i++) {
-                    $scope.post_list[i].background = colors[Math.floor((Math.random() * colors.length))];
-                    console.log($scope.post_list[i].background);
-                }
-                $mdDialog.hide();
-            })
-                .error(function (data) {
-                console.log('Error: ' + data);
-            });
-        };
 })
 
 app.config(function ($mdIconProvider) {
