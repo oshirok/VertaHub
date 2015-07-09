@@ -58,6 +58,10 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
                     '           <input ng-model="ctrl.new_post.name" md-maxlength="65">' +
                     '       </md-input-container>' +
                     '       <md-input-container flex>' +
+                    '           <label>Post Title</label>' +
+                    '           <input ng-model="ctrl.new_post.author" md-maxlength="65">' +
+                    '       </md-input-container>' +
+                    '       <md-input-container flex>' +
                     '       <label>Decsription</label>' +
                     '       <textarea ng-model="ctrl.new_post.desc" columns="1" md-maxlength=""></textarea>' +
                     '       </md-input-container>' +
@@ -85,7 +89,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
                     '  </div>' +
                     '  <div class="md-actions" >' +
                     '    <md-button flex ng-click="closeDialog()">' +
-                    '      Close Greeting' +
+                    '      Close' +
                     '    </md-button>' +
                     '  </div>' +
                     '  </div>' +
