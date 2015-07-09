@@ -125,6 +125,8 @@ body {
 .gridListdemoDynamicTiles .red {
   background: #B90E2F; }
 .gridListdemoDynamicTiles .orange {
+  background: #FF5200}
+.gridListdemoDynamicTiles .picnic {
   background-image: url("img/picnic.jpg"); }
 .gridListdemoDynamicTiles md-grid-tile {
   transition: all 300ms ease-out 50ms; }

@@ -12,7 +12,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
             $scope.post_list = data;
             
             console.log(data.length);
-            var colors = ["red","blue","green","gray", "orange"];
+            var colors = ["red","blue","green","gray", "orange", "picnic"];
             for (var i = 0; i < $scope.post_list.length; i++) {
                 $scope.post_list[i].background = colors[Math.floor((Math.random() * colors.length))];
                 console.log($scope.post_list[i].background);
@@ -45,22 +45,32 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
         });
 
         function showDialog($event) {
-            var parentEl = angular.element(document.querySelector('md-content'));
+            var parentEl = angular.element(document.querySelector('md-content')); 
             alert = $mdDialog.alert({
                 parent: parentEl,
                 targetEvent: $event,
                 template:
-                    '<md-dialog aria-label="Sample Dialog">' +
+                    '<md-dialog aria-label="Sample Dialog">' + //Submit a post pop up
                     '  <md-content>' +
                     '    <form name="userForm">' +
                     '       <md-input-container flex>' +
                     '           <label>Post Title</label>' +
-                    '           <input ng-model="ctrl.new_post.name" md-maxlength="80">' +
+                    '           <input ng-model="ctrl.new_post.name" md-maxlength="65">' +
                     '       </md-input-container>' +
                     '       <md-input-container flex>' +
                     '       <label>Decsription</label>' +
-                    '       <textarea ng-model="ctrl.new_post.desc" columns="1" md-maxlength="300"></textarea>' +
+                    '       <textarea ng-model="ctrl.new_post.desc" columns="1" md-maxlength=""></textarea>' +
                     '       </md-input-container>' +
+					'		<div class="md-padding"> '+
+					'			<div>'+
+					'				<div layout="row">' +  // ADUJUST CATEGORIES HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+					'					<h5>Category:</h5>' +
+					'					<md-select ng-model="ctrl.new_post.category">'+
+					'						<md-option value="Admin">Admin</md-option>'+
+					'					</md-select>'+
+					'				</div>'+
+					'			</div>'+
+					'		</div>'+
                     '    </form>' +
                     '  <div layout layout-sm="column" flex>' +
                     '  <div class="md-actions" >' +
@@ -103,7 +113,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
                 $scope.post_list = [];
                 $scope.post_list = data;
                 console.log(data);
-                var colors = ["red","blue","green","gray", "orange"];
+                var colors = ["red","blue","green","gray", "orange", "picnic"];
                 for (var i = 0; i < $scope.post_list.length; i++) {
                     $scope.post_list[i].background = colors[Math.floor((Math.random() * colors.length))];
                     console.log($scope.post_list[i].background);
@@ -133,12 +143,17 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
                 parent: parentEl,
                 targetEvent: $event,
                 template:
-                    '<md-dialog aria-label="Sample Dialog">' +
-                    '  <md-content>' +
-                    '    <h1 text-align="center">{{ctrl.name}}</h1> <br>' +
-					'	 <h5>{{ctrl.desc}}</h5>' +
-					'    <img src="img/disco.gif">' +
-					' </md-content>' +
+                    '<md-dialog aria-label="{{ctrl.name}}">' + //Easter egg: Dance
+					'	<form> ' +
+					'	<md-toolbar>' +
+					'		<div class="md-toolbar-tools">' +
+					'			<h2> {{ctrl.name}} </h2>' +
+					'			<span flex></span>' +
+					'		</div> '+
+					'	</md-toolbar>' +
+                    '  <md-dialog-content>' +
+					'	 <img src="img/disco.gif">' +
+					'  </md-dialog-content>' +
                     '  <div class="md-actions" >' +
                     '    <md-button flex ng-click="closeDialog()">' +
                     '      Close' +
@@ -161,7 +176,7 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
                 parent: parentEl,
                 targetEvent: $event,
                 template:
-                    '<md-dialog aria-label="{{ctrl.name}}">' +
+                    '<md-dialog aria-label="{{ctrl.name}}">' + //Pop up post
 					'	<form> ' +
 					'	<md-toolbar>' +
 					'		<div class="md-toolbar-tools">' +
