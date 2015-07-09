@@ -12,9 +12,9 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
             $scope.post_list = data;
             
             console.log(data.length);
-            var colors = ["red","blue","green","gray", "orange", "picnic"];
+            var colors = ["orange","blue","green","gray", "red", "picnic"];
             for (var i = 0; i < $scope.post_list.length; i++) {
-                $scope.post_list[i].background = colors[Math.floor((Math.random() * colors.length))];
+                $scope.post_list[i].background = colors[$scope.post_list[i].category];
                 console.log($scope.post_list[i].background);
             }
 			/*for(i in data){
@@ -65,8 +65,13 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
 					'			<div>'+
 					'				<div layout="row">' +  // ADUJUST CATEGORIES HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 					'					<h5>Category:</h5>' +
-					'					<md-select ng-model="ctrl.new_post.category">'+
-					'						<md-option value="Admin">Admin</md-option>'+
+					'					<md-select ng-init="ctrl.new_post.category=5" ng-model="ctrl.new_post.category" >'+
+					'						<md-option ng-value="0">Admin</md-option>'+
+					'						<md-option ng-value="1">Event</md-option>'+
+					'						<md-option ng-value="2">Ad</md-option>'+
+					'						<md-option ng-value="3">Discussion</md-option>'+
+					'						<md-option ng-value="4">Urgent</md-option>'+
+					'						<md-option ng-value="5">Misc</md-option>'+
 					'					</md-select>'+
 					'				</div>'+
 					'			</div>'+
@@ -113,9 +118,9 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
                 $scope.post_list = [];
                 $scope.post_list = data;
                 console.log(data);
-                var colors = ["red","blue","green","gray", "orange", "picnic"];
+                var colors = ["orange","blue","green","gray", "red", "picnic"];
                 for (var i = 0; i < $scope.post_list.length; i++) {
-                    $scope.post_list[i].background = colors[Math.floor((Math.random() * colors.length))];
+                    $scope.post_list[i].background = colors[$scope.post_list[i].category];
                     console.log($scope.post_list[i].background);
                 }
                 $mdDialog.hide();
