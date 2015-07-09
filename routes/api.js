@@ -95,12 +95,17 @@ router.get('/posts', function (req, res) {
 router.post('/posts', function (req, res) {
     console.log(req.body);
     if (!req.body.name) return;
+    var author = req.body.author;
+    if (!author) {
+        author = "Anonymous";
+    }
     Post.create({
         timestamp: new Date().getTime(),
         last_updated: new Date().getTime(),
         name: req.body.name,
         desc: req.body.desc,
-        category: parseInt(req.body.category)
+        category: parseInt(req.body.category),
+        author: author
     }, function (err, messages) {
         Post.find({}).sort({ timestamp: -1 }).exec(function (err, posts) {
             if (err)

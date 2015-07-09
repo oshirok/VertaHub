@@ -6,5 +6,6 @@ module.exports = mongoose.model('Post', {
     last_updated: {type: Date, default: Date.now },
     name: String,
     desc: String,
-	category: Number
+    category: Number,
+    author: String
 });
