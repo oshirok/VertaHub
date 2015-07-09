@@ -99,7 +99,8 @@ router.post('/posts', function (req, res) {
         timestamp: new Date().getTime(),
         last_updated: new Date().getTime(),
         name: req.body.name,
-        desc: req.body.desc
+        desc: req.body.desc,
+        category: req.body.category
     }, function (err, messages) {
         Post.find({}).sort({ timestamp: -1 }).exec(function (err, posts) {
             if (err)
