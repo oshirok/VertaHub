@@ -137,7 +137,8 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
                     '  <md-content>' +
                     '    <h1 text-align="center">{{ctrl.name}}</h1> <br>' +
 					'	 <h5>{{ctrl.desc}}</h5>' +
-					' <img src="img/disco.gif">' +
+					'    <img src="img/disco.gif">' +
+					' </md-content>' +
                     '  <div class="md-actions" >' +
                     '    <md-button flex ng-click="closeDialog()">' +
                     '      Close' +
@@ -160,10 +161,17 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
                 parent: parentEl,
                 targetEvent: $event,
                 template:
-                    '<md-dialog aria-label="Sample Dialog">' +
-                    '  <md-content>' +
-                    '    <h1 text-align="center">{{ctrl.name}}</h1> <br>' +
+                    '<md-dialog aria-label="{{ctrl.name}}">' +
+					'	<form> ' +
+					'	<md-toolbar>' +
+					'		<div class="md-toolbar-tools">' +
+					'			<h2> {{ctrl.name}} </h2>' +
+					'			<span flex></span>' +
+					'		</div> '+
+					'	</md-toolbar>' +
+                    '  <md-dialog-content>' +
 					'	 <h5>{{ctrl.desc}}</h5>' +
+					'  </md-dialog-content>' +
                     '  <div class="md-actions" >' +
                     '    <md-button flex ng-click="closeDialog()">' +
                     '      Close' +
