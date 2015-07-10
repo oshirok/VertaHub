@@ -58,7 +58,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
                     '           <input ng-model="ctrl.new_post.name" md-maxlength="65">' +
                     '       </md-input-container>' +
                     '       <md-input-container flex>' +
-                    '           <label>Post Title</label>' +
+                    '           <label>Posted by</label>' +
                     '           <input ng-model="ctrl.new_post.author" md-maxlength="65">' +
                     '       </md-input-container>' +
                     '       <md-input-container flex>' +
@@ -143,9 +143,10 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
 	$scope.showDialog = showDialog;
 	$scope.name;
 	
-	function showDialog($event,name,desc) {
+	function showDialog($event,name,desc,author) {
 		$scope.name = name;
 		$scope.desc = desc;
+		$scope.author = author;
             var parentEl = angular.element(document.querySelector('md-content'));
 			if($scope.name=="dance"){
    alert = $mdDialog.alert({
@@ -188,12 +189,14 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
                     '<md-dialog aria-label="{{ctrl.name}}">' + //Pop up post
 					'	<form> ' +
 					'	<md-toolbar>' +
-					'		<div class="md-toolbar-tools">' +
+					'		<div class="md-toolbar-tools" layout="vertical">' +
 					'			<h2> {{ctrl.name}} </h2>' +
 					'			<span flex></span>' +
 					'		</div> '+
 					'	</md-toolbar>' +
                     '  <md-dialog-content>' +
+					'	<font size="2"><i>Posted by:{{ctrl.author}}</i></font>'+
+                    '  <md-divider></md-divider>'+
 					'	 <h5>{{ctrl.desc}}</h5>' +
 					'  </md-dialog-content>' +
                     '  <div class="md-actions" >' +
@@ -205,6 +208,7 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
                 locals: {
 					name: $scope.name,
 					desc: $scope.desc,
+					author: $scope.author,
                     closeDialog: $scope.closeDialog,
                     submitDialog: $scope.submitDialog
                 },
