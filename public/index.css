@@ -1,8 +1,6 @@
-﻿::-webkit-scrollbar { 
-    display: none; 
-}
-
+﻿
 body {
+    overflow-y: hidden;
     background-color: #dddddd;
 }
 
@@ -90,6 +88,11 @@ body {
 }
 
 .grid-item--width2 { width: 280px; }
+
+.gridListdemoDynamicTiles {
+	overflow-y: scroll;
+
+}
 
 
 .gridListdemoDynamicTiles md-icon {
