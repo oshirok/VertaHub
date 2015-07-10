@@ -50,7 +50,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
                 parent: parentEl,
                 targetEvent: $event,
                 template:
-                    '<md-dialog aria-label="Sample Dialog">' + //Submit a post pop up
+                    '<md-dialog flex="40" aria-label="Sample Dialog">' + //Submit a post pop up
                     '  <md-content>' +
                     '    <form name="userForm">' +
                     '       <md-input-container flex>' +
@@ -68,7 +68,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
 					'		<div class="md-padding"> '+
 					'			<div>'+
 					'				<div layout="row">' +  // ADUJUST CATEGORIES HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-					'					<h5>Category:</h5>' +
+					'					<pre><h2>Category:  </h2> </pre>' +
 					'					<md-select ng-init="ctrl.new_post.category=5" ng-model="ctrl.new_post.category" >'+
 					'						<md-option ng-value="0">Admin</md-option>'+
 					'						<md-option ng-value="1">Event</md-option>'+
@@ -81,15 +81,15 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
 					'			</div>'+
 					'		</div>'+
                     '    </form>' +
-                    '  <div layout layout-sm="column" flex>' +
-                    '  <div class="md-actions" >' +
-                    '    <md-button flex ng-click="ctrl.submitDialog()">' +
-                    '      Submit' +
-                    '    </md-button>' +
-                    '  </div>' +
+                    '  <div layout-align="center"layout layout-sm="horizontal" flex>' +
                     '  <div class="md-actions" >' +
                     '    <md-button flex ng-click="closeDialog()">' +
                     '      Close' +
+                    '    </md-button>' +
+                    '  </div>' +
+                    '  <div class="md-actions" >' +
+                    '    <md-button flex ng-click="ctrl.submitDialog()">' +
+                    '      Submit' +
                     '    </md-button>' +
                     '  </div>' +
                     '  </div>' +
