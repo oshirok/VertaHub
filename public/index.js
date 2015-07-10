@@ -143,45 +143,12 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
 	$scope.showDialog = showDialog;
 	$scope.name;
 	
-	function showDialog($event,name,desc,author) {
+	function showDialog($event,name,desc,author,id) {
 		$scope.name = name;
 		$scope.desc = desc;
 		$scope.author = author;
+		$scope.id = id;
             var parentEl = angular.element(document.querySelector('md-content'));
-			if($scope.name=="dance"){
-   alert = $mdDialog.alert({
-                parent: parentEl,
-                targetEvent: $event,
-                template:
-                    '<md-dialog aria-label="{{ctrl.name}}">' + //Easter egg: Dance
-					'	<form> ' +
-					'	<md-toolbar>' +
-					'		<div class="md-toolbar-tools">' +
-					'			<h2> {{ctrl.name}} </h2>' +
-					'			<span flex></span>' +
-					'		</div> '+
-					'	</md-toolbar>' +
-                    '  <md-dialog-content>' +
-					'	 <img src="img/disco.gif">' +
-					'  </md-dialog-content>' +
-                    '  <div class="md-actions" >' +
-                    '    <md-button flex ng-click="closeDialog()">' +
-                    '      Close' +
-                    '    </md-button>' +
-                    '  </div>' +
-                    '</md-dialog>',
-                locals: {
-					name: $scope.name,
-					desc: $scope.desc,
-                    closeDialog: $scope.closeDialog,
-                    submitDialog: $scope.submitDialog
-                },
-                bindToController: true,
-                controllerAs: 'ctrl',
-                controller: 'DialogController'
-            });
-			}
-			else{
             alert = $mdDialog.alert({
                 parent: parentEl,
                 targetEvent: $event,
@@ -192,8 +159,8 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
 					'		<div class="md-toolbar-tools md-actions" layout="horizontal">' +
 					'			<h2> {{ctrl.name}} </h2>' +
 					'			<span flex></span>' +
-                    '    		<md-button flex ng-click="">' + //Kent look here----------------------------
-                    '      			Submit' +
+                    '    		<md-button ng-click="">' + //Delete post!!!!!!!!!!!!!!!!
+                    '      			<md-icon md-font-icon="fa-edit" class="fa s16 md-primary md-hue-2"></md-icon>' +
                     '    		</md-button>' +
 					'		</div> '+
 					'	</md-toolbar>' +
@@ -212,6 +179,7 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
 					name: $scope.name,
 					desc: $scope.desc,
 					author: $scope.author,
+					id: $scope.id,
                     closeDialog: $scope.closeDialog,
                     submitDialog: $scope.submitDialog
                 },
@@ -219,13 +187,16 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
                 controllerAs: 'ctrl',
                 controller: 'DialogController'
             });
-            }
+            
             $mdDialog
               .show(alert)
               .finally(function () {
                 alert = undefined;
             });
-        }
+    }
+	$scope.delete = function(id){ //THIS IS WHERE THE DELETE FUNCTION IS NOW I DONT KNOW WHERE IT'S SUPPOSED TO GO
+		$http.delete
+	}
 })
 
 app.config(function ($mdIconProvider) {
@@ -245,7 +216,7 @@ app.controller('myCtrl', function($scope) {
     $scope.lastName = "Doe";
 });
 
-// YO YO YO WARREN START HERE ----------------------------------------------------------------------------
+// This grid is outdated ----------------------------------------------------------------------------
 app.controller('myGrid', function($scope){
 	var posts = [{ 
 "timestamp": 1436268134, 
@@ -312,7 +283,7 @@ app.controller('myGrid', function($scope){
 	};
 
 });
-// YO YO YO THIS IS WHERE YOUR GRID ENDS ------------------------------------------------------------------
+// YO YO YO THIS IS WHERE YOUR (outdated)GRID ENDS ------------------------------------------------------------------
 
 app.config(function ($mdThemingProvider) {
     

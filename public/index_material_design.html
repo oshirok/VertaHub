@@ -78,7 +78,7 @@
                 </md-item>
 
                 <md-button class="md-fab" aria-label="Eat cake" ng-click="showDialog($event)">
-                    <md-icon md-font-icon="fa-thumb-tack" class="fa s16 md-primary md-hue-2"></md-icon>
+                    <md-icon md-font-icon="fa-thumb-tack" class="fa s16 white"></md-icon>
                 </md-button>
             </md-list>
 
@@ -93,7 +93,7 @@
                           md-row-height-gt-md="1:1" md-row-height="4:3"
                           md-gutter="8px" md-gutter-gt-sm="10px">
                 <md-grid-tile class="dynamicBox hvr-grow" ng-repeat="post in post_list" 
-							  ng-click="showDialog($event,post.name,post.desc,post.author)" 
+							  ng-click="showDialog($event,post.name,post.desc,post.author,post._id)" 
                               md-rowspan="1"
                               md-colspan="2"
                               md-colspan-sm="1"
