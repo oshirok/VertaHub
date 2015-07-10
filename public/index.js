@@ -51,15 +51,19 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
                 targetEvent: $event,
                 template:
                     '<md-dialog flex="40" aria-label="Sample Dialog">' + //Submit a post pop up
+					'	<md-toolbar>' +
+					'		<div class="md-toolbar-tools md-actions" layout="horizontal">' +
+                    '       	<md-input-container flex>' +
+                    '           	<label>Post Title</label>' +
+                    '           	<input ng-model="ctrl.new_post.name" md-maxlength="65">' +
+                    '       	</md-input-container>' +
+					'		</div> '+
+					'	</md-toolbar>' +
                     '  <md-content>' +
                     '    <form name="userForm">' +
                     '       <md-input-container flex>' +
-                    '           <label>Post Title</label>' +
-                    '           <input ng-model="ctrl.new_post.name" md-maxlength="65">' +
-                    '       </md-input-container>' +
-                    '       <md-input-container flex>' +
                     '           <label>Posted by</label>' +
-                    '           <input ng-model="ctrl.new_post.author" md-maxlength="65">' +
+                    '           <input ng-model="ctrl.new_post.author" md-maxlength="25">' +
                     '       </md-input-container>' +
                     '       <md-input-container flex>' +
                     '       <label>Decsription</label>' +
