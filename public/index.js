@@ -191,6 +191,7 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
 					'	<md-toolbar>' +
 					'		<div class="md-toolbar-tools md-actions" layout="horizontal">' +
 					'			<h2> {{ctrl.name}} </h2>' +
+					'			<span flex></span>' +
                     '    		<md-button flex ng-click="">' + //Kent look here----------------------------
                     '      			Submit' +
                     '    		</md-button>' +
