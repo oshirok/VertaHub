@@ -186,12 +186,14 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
                 parent: parentEl,
                 targetEvent: $event,
                 template:
-                    '<md-dialog aria-label="{{ctrl.name}}">' + //Pop up post
+                    '<md-dialog flex="40"aria-label="{{ctrl.name}}">' + //Pop up post
 					'	<form> ' +
 					'	<md-toolbar>' +
-					'		<div class="md-toolbar-tools" layout="vertical">' +
+					'		<div class="md-toolbar-tools md-actions" layout="horizontal">' +
 					'			<h2> {{ctrl.name}} </h2>' +
-					'			<span flex></span>' +
+                    '    		<md-button flex ng-click="">' + //Kent look here----------------------------
+                    '      			Submit' +
+                    '    		</md-button>' +
 					'		</div> '+
 					'	</md-toolbar>' +
                     '  <md-dialog-content>' +
