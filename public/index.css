@@ -171,3 +171,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 .dynamicBox{
 
 }
+
+.md-dialog-container {
+    background-color: rgba(0, 0, 0, 0.5);
+}
