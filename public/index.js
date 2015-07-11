@@ -96,7 +96,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
                     '    </md-button>' +
                     '  </div>' +
                     '  <div class="md-actions" >' +
-                    '    <md-button flex ng-if="ctrl.new_post.category!=0 || ctrl.password == 0000" ng-click="ctrl.submitDialog()">' +
+                    '    <md-button flex ng-if="ctrl.new_post.category!=0 || ctrl.password == 1234" ng-click="ctrl.submitDialog()">' +
                     '      Submit' +
                     '    </md-button>' +
                     '  </div>' +
