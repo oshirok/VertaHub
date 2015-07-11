@@ -81,6 +81,10 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
 					'						<md-option ng-value="4">Urgent</md-option>'+
 					'						<md-option ng-value="5">Misc</md-option>'+
 					'					</md-select>'+
+                    '       			<md-input-container ng-init="ctrl.password = 0" ng-if="ctrl.new_post.category==0" flex>' +
+                    '           			<label>Password</label>' +
+                    '           			<input type="text" ng-model="ctrl.password">' +
+                    '       			</md-input-container>' +
 					'				</div>'+
 					'			</div>'+
 					'		</div>'+
@@ -92,7 +96,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
                     '    </md-button>' +
                     '  </div>' +
                     '  <div class="md-actions" >' +
-                    '    <md-button flex ng-click="ctrl.submitDialog()">' +
+                    '    <md-button flex ng-if="ctrl.new_post.category!=0 || ctrl.password == 0000" ng-click="ctrl.submitDialog()">' +
                     '      Submit' +
                     '    </md-button>' +
                     '  </div>' +
@@ -101,6 +105,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
                 locals: {
                     items: $scope.items,
                     new_post: $scope.new_post,
+					password:$scope.password,
                     closeDialog: $scope.closeDialog,
                     submitDialog: $scope.submitDialog
                 },
