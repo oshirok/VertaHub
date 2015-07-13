@@ -56,7 +56,8 @@ router.post('/attend', function (req, res) {
 
 /* GET comments listing. */
 router.get('/comments', function (req, res) {
-    Comment.find({}).sort({ timestamp: -1 }).exec(function (err, comments) {
+    if (!req.query.postId) res.send("No comments found!?");
+    Comment.find({ 'postId': req.query.postId }).sort({ timestamp: -1 }).exec(function (err, comments) {
         if (err)
             res.send(err);
         //messages now shown from newest to oldest
@@ -65,19 +66,19 @@ router.get('/comments', function (req, res) {
 });
 
 /* POST comment*/
-router.post('/events', function (req, res) {
+router.post('/comments', function (req, res) {
     if (!req.body.name) return;
     Comment.create({
-        timestamp: new Timestamp(),
-        event: req.body.event_id,
+        timestamp: new Date().getTime(),
+        postId: req.body.postId,
         text: string
-    });
-
-    Comment.find({}).sort({ timestamp: -1 }).exec(function (err, events) {
-        if (err)
-            res.send(err);
-        //messages now shown from newest to oldest
-        res.json(events);
+    }, function (err) {
+        Comment.find({ 'postId': req.query.postId }).sort({ timestamp: -1 }).exec(function (err, comments) {
+            if (err)
+                res.send(err);
+            //messages now shown from newest to oldest
+            res.json(comments);
+        });
     });
 });
 
@@ -106,7 +107,7 @@ router.post('/posts', function (req, res) {
         desc: req.body.desc,
         category: parseInt(req.body.category),
         author: author
-    }, function (err, messages) {
+    }, function (err) {
         Post.find({}).sort({ timestamp: -1 }).exec(function (err, posts) {
             if (err)
                 res.send(err);
