@@ -81,7 +81,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
 					'						<md-option ng-value="4">Urgent</md-option>'+
 					'						<md-option ng-value="5">Misc</md-option>'+
 					'					</md-select>'+
-                    '       			<md-input-container ng-init="ctrl.password = 0" ng-if="ctrl.new_post.category==0" flex>' +
+                    '       			<md-input-container ng-init="ctrl.password = null" ng-if="ctrl.new_post.category==0" flex>' +
                     '           			<label>Password</label>' +
                     '           			<input type="text" ng-model="ctrl.password">' +
                     '       			</md-input-container>' +
@@ -168,7 +168,7 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
 					'		<div class="md-toolbar-tools md-actions" layout="horizontal">' +
 					'			<h2> {{ctrl.name}} </h2>' +
 					'			<span flex></span>' +
-                    '    		<md-button ng-click="">' + //Delete post!!!!!!!!!!!!!!!!
+                    '    		<md-button ng-click="confirmDelete()">' + //Delete post
                     '      			<md-icon md-font-icon="fa-edit" class="fa s16 md-primary md-hue-2"></md-icon>' +
                     '    		</md-button>' +
 					'		</div> '+
@@ -188,9 +188,7 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
 					name: $scope.name,
 					desc: $scope.desc,
 					author: $scope.author,
-					id: $scope.id,
-                    closeDialog: $scope.closeDialog,
-                    submitDialog: $scope.submitDialog
+					id: $scope.id
                 },
                 bindToController: true,
                 controllerAs: 'ctrl',
@@ -214,6 +212,13 @@ app.config(function ($mdIconProvider) {
 app.controller('DialogController', function ($http, $scope, $mdDialog) {
     //alert( this.closeDialog );
     //this.closeDialog = $scope.closeDialog;
+
+	$scope.confirmDelete = function confirmDelete(){
+		var x = confirm("Are you sure you want to delete this post?");
+		if(x==true){
+			                                          // 	write the call to delete function here;
+		}
+	}
 
     $scope.closeDialog = function() {
       $mdDialog.hide();
