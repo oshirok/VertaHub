@@ -174,11 +174,15 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
 			return ;
 		}
 	}
-	function showDialog($event,name,desc,author,id) {
+	function showDialog($event,name,desc,author,id,category) {
+		var colors = ['#FF5200',"#00A3E0","#009917","#53565A", "#B90E2F", "#b388ff"];
 		$scope.name = name;
 		$scope.desc = desc;
 		$scope.author = author;
 		$scope.id = id;
+		$scope.color = colors[category];
+
+
             var parentEl = angular.element(document.querySelector('md-content'));
             alert = $mdDialog.alert({
                 parent: parentEl,
@@ -186,12 +190,12 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
                 template:
                     '<md-dialog flex="40"aria-label="{{ctrl.name}}">' + //Pop up post
 					'	<form> ' +
-					'	<md-toolbar>' +
+					'	<md-toolbar style="background-color:{{ctrl.color}}">' +
 					'		<div class="md-toolbar-tools md-actions" layout="horizontal">' +
 					'			<h2> {{ctrl.name}} </h2>' +
 					'			<span flex></span>' +
                     '    		<md-button ng-click="confirmDelete()">' + //Delete post
-                    '      			<md-icon md-font-icon="fa-edit" class="fa s16 md-primary md-hue-2"></md-icon>' +
+                    '      			<md-icon md-font-icon="fa-edit" class="fa s16 white"></md-icon>' +
                     '    		</md-button>' +
 					'		</div> '+
 					'	</md-toolbar>' +
@@ -210,6 +214,7 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
 					name: $scope.name,
 					desc: $scope.desc,
 					author: $scope.author,
+					color: $scope.color,
 					id: $scope.id
                 },
                 bindToController: true,
