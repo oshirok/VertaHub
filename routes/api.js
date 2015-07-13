@@ -113,6 +113,7 @@ router.post('/posts', function (req, res) {
         last_updated: new Date().getTime(),
         name: req.body.name,
         desc: req.body.desc,
+        imageURL: req.body.imageURL,
         category: parseInt(req.body.category),
         author: author
     }, function (err) {

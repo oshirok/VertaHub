@@ -7,5 +7,6 @@ module.exports = mongoose.model('Post', {
     name: String,
     desc: String,
     category: Number,
-    author: String
+    author: String, 
+    imageURL: String
 });
