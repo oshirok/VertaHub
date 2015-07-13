@@ -142,17 +142,17 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
                 $scope.new_post = {};
                 console.log(data);
 				var colors = ['#FF5200',"#00A3E0","#009917","#53565A", "#B90E2F", "#b388ff"];
-                for (var i = 0; i < $scope.post_list.length; i++) {
+				for (var i = 0; i < $scope.post_list.length; i++) {
 					if($scope.post_list[i].imageURL != null){
-						$scope.post_list[i].background = $scope.post_list[i].imageURL; //custom background
+						$scope.post_list[i].background = "url('"+ $scope.post_list[i].imageURL + "')"; //custom background
 					}
 					else{
 						$scope.post_list[i].background = colors[$scope.post_list[i].category];
 						console.log($scope.post_list[i].background);
 					}
-                }
-                $mdDialog.hide();
-            })
+				}
+					$mdDialog.hide();
+				})
                 .error(function (data) {
                 console.log('Error: ' + data);
             });
