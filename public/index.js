@@ -12,10 +12,10 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
             $scope.post_list = data;
             
             console.log(data.length);
-            var colors = ["orange","blue","green","gray", "red", "picnic"];
+            var colors = ['#FF5200',"#00A3E0","#009917","#53565A", "#B90E2F", "#b388ff"];
             for (var i = 0; i < $scope.post_list.length; i++) {
-				if($scope.post_list[i].category==6){
-					$scope.post_list[i].background = "picnic"; //custom background
+				if($scope.post_list[i].imageURL != null){
+					$scope.post_list[i].background = $scope.post_list[i].imageURL; //custom background
 				}
 				else{
 					$scope.post_list[i].background = colors[$scope.post_list[i].category];
@@ -74,6 +74,10 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
                     '       <label>Decsription</label>' +
                     '       <textarea ng-model="ctrl.new_post.desc" columns="1" md-maxlength=""></textarea>' +
                     '       </md-input-container>' +
+                    '       <md-input-container flex>' +
+                    '           <label>URL</label>' +
+                    '           <input ng-model="ctrl.new_post.imageURL">' +
+                    '       </md-input-container>' +
 					'		<div class="md-padding"> '+
 					'			<div>'+
 					'				<div layout="row">' +  // ADUJUST CATEGORIES HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -85,7 +89,6 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
 					'						<md-option ng-value="3">Discussion</md-option>'+
 					'						<md-option ng-value="4">Urgent</md-option>'+
 					'						<md-option ng-value="5">Misc</md-option>'+
-					'						<md-option ng-value="6">Custom</md-option'+
 					'					</md-select>'+
                     '       			<md-input-container ng-init="ctrl.password = null" ng-if="ctrl.new_post.category==0" flex>' +
                     '           			<label>Password</label>' +
@@ -137,10 +140,10 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
                 // clear the form, allowing the user to send more messages
                 $scope.new_post = {};
                 console.log(data);
-                var colors = ["orange","blue","green","gray", "red", "picnic"];
+				var colors = ['#FF5200',"#00A3E0","#009917","#53565A", "#B90E2F", "#b388ff"];
                 for (var i = 0; i < $scope.post_list.length; i++) {
-					if($scope.post_list[i].category==6){
-						$scope.post_list[i].background = colors[3];
+					if($scope.post_list[i].imageURL != null){
+						$scope.post_list[i].background = $scope.post_list[i].imageURL; //custom background
 					}
 					else{
 						$scope.post_list[i].background = colors[$scope.post_list[i].category];
@@ -162,7 +165,14 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
 	
 	$scope.showDialog = showDialog;
 	$scope.name;
-	
+	$scope.background = function(background,desc){
+		if(background != null){
+			return background;
+		}
+		else{
+			return ;
+		}
+	}
 	function showDialog($event,name,desc,author,id) {
 		$scope.name = name;
 		$scope.desc = desc;

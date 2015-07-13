@@ -129,6 +129,8 @@ body {
   background: #FF5200}
 .gridListdemoDynamicTiles .picnic {
   background-image: url("img/picnic.jpg"); }
+.gridListdemoDynamicTiles .custom {
+  background-image: url("img/dance.gif"); }
 .gridListdemoDynamicTiles md-grid-tile {
   transition: all 300ms ease-out 50ms; }
 .gridListdemoDynamicTiles md-grid-tile md-icon {

@@ -97,9 +97,9 @@
                               md-rowspan="1"
                               md-colspan="2"
                               md-colspan-sm="2"
-                              ng-class="post.background">
+                              ng-style="{'background': post.background}" >
                     <md-icon md-svg-icon="{{post.icon}}"></md-icon>
-						<md-grid-tile-header>
+						<md-grid-tile-header layout="vertical">
 							<h3>{{post.name}}</h3><br>
 						</md-grid-tile-header>
 						<md-grid-tile-footer>
