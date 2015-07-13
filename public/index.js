@@ -15,7 +15,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
             var colors = ['#FF5200',"#00A3E0","#009917","#53565A", "#B90E2F", "#b388ff"];
             for (var i = 0; i < $scope.post_list.length; i++) {
 				if($scope.post_list[i].imageURL != null){
-					$scope.post_list[i].background = $scope.post_list[i].imageURL; //custom background
+					$scope.post_list[i].background = "url('"+ $scope.post_list[i].imageURL + "')"; //custom background
 				}
 				else{
 					$scope.post_list[i].background = colors[$scope.post_list[i].category];
@@ -74,10 +74,6 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
                     '       <label>Decsription</label>' +
                     '       <textarea ng-model="ctrl.new_post.desc" columns="1" md-maxlength=""></textarea>' +
                     '       </md-input-container>' +
-                    '       <md-input-container flex>' +
-                    '           <label>URL</label>' +
-                    '           <input ng-model="ctrl.new_post.imageURL">' +
-                    '       </md-input-container>' +
 					'		<div class="md-padding"> '+
 					'			<div>'+
 					'				<div layout="row">' +  // ADUJUST CATEGORIES HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -95,6 +91,11 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
                     '           			<input type="text" ng-model="ctrl.password">' +
                     '       			</md-input-container>' +
 					'				</div>'+
+					'          		<md-icon md-font-icon="fa-camera" class="fa s16 black ng-init="urlHidden = true" ng-click="urlHidden = !urlHidden" class="md-raised"></md-icon> Insert image' +
+                    '       		<md-input-container ng-show="urlHidden" flex>' +
+                    '           		<label>URL</label>' +
+                    '           		<input ng-model="ctrl.new_post.imageURL">' +
+                    '       		</md-input-container>' +
 					'			</div>'+
 					'		</div>'+
                     '    </form>' +
