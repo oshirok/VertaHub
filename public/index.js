@@ -14,8 +14,13 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
             console.log(data.length);
             var colors = ["orange","blue","green","gray", "red", "picnic"];
             for (var i = 0; i < $scope.post_list.length; i++) {
-                $scope.post_list[i].background = colors[$scope.post_list[i].category];
-                console.log($scope.post_list[i].background);
+				if($scope.post_list[i].category==6){
+					$scope.post_list[i].background = "picnic"; //custom background
+				}
+				else{
+					$scope.post_list[i].background = colors[$scope.post_list[i].category];
+					console.log($scope.post_list[i].background);
+				}
             }
 			/*for(i in data){
 				console.log(i);
@@ -80,6 +85,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
 					'						<md-option ng-value="3">Discussion</md-option>'+
 					'						<md-option ng-value="4">Urgent</md-option>'+
 					'						<md-option ng-value="5">Misc</md-option>'+
+					'						<md-option ng-value="6">Custom</md-option'+
 					'					</md-select>'+
                     '       			<md-input-container ng-init="ctrl.password = null" ng-if="ctrl.new_post.category==0" flex>' +
                     '           			<label>Password</label>' +
@@ -133,8 +139,13 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
                 console.log(data);
                 var colors = ["orange","blue","green","gray", "red", "picnic"];
                 for (var i = 0; i < $scope.post_list.length; i++) {
-                    $scope.post_list[i].background = colors[$scope.post_list[i].category];
-                    console.log($scope.post_list[i].background);
+					if($scope.post_list[i].category==6){
+						$scope.post_list[i].background = colors[3];
+					}
+					else{
+						$scope.post_list[i].background = colors[$scope.post_list[i].category];
+						console.log($scope.post_list[i].background);
+					}
                 }
                 $mdDialog.hide();
             })
@@ -176,7 +187,7 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
                     '  <md-dialog-content>' +
 					'	<font size="2"><i>Posted by:{{ctrl.author}}</i></font>'+
                     '  <md-divider></md-divider>'+
-					'	 <h5>{{ctrl.desc}}</h5>' +
+					'	 <h5><pre>{{ctrl.desc}}</pre></h5>' +
 					'  </md-dialog-content>' +
                     '  <div class="md-actions" >' +
                     '    <md-button flex ng-click="closeDialog()">' +

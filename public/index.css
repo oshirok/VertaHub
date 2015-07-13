@@ -62,22 +62,18 @@ body {
 }
 
 
-/* ---- grid ---- */
-
+/* ---- below is outdated ---- */
 .grid {
   background: #DDD;
   max-width: 1200px;
 }
-
 /* clear fix */
 .grid:after {
   content: '';
   display: block;
   clear: both;
 }
-
 /* ---- .grid-item ---- */
-
 .grid-item {
   float: left;
   width: 200px;
@@ -86,13 +82,11 @@ body {
   border: 6px solid #333;
   border-color: #dddddd;
 }
-
 .grid-item--width2 { width: 280px; }
-
 .gridListdemoDynamicTiles {
 	overflow-y: scroll;
-
 }
+/* -------- above is outdated -----------*/
 
 
 .gridListdemoDynamicTiles md-icon {
@@ -144,21 +138,19 @@ body {
   
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+59,333333+100 */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#333333',GradientType=0 ); /* IE6-9 */
-
-  height: 100%; }
+	height: 12%;
+ }
 .gridListdemoDynamicTiles md-grid-tile-header figcaption {
   height: 40px;
   width: 100%; 
 }
 .gridListdemoDynamicTiles md-grid-tile-header figcaption h3 {
   font-size: 18px;
-
+  margin: 0 0 0 4px;
   font-weight: 700;
-  width: 95%;
+  width: 100%;
   height: 100%;
   color: white;
-  position:absolute;
-
   }
 .gridListdemoDynamicTiles md-grid-tile-footer{
 
@@ -174,4 +166,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 
 .md-dialog-container {
     background-color: rgba(0, 0, 0, 0.5);
+}
+pre{
+	white-space: pre-wrap;
 }
