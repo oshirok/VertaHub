@@ -88,6 +88,14 @@ router.get('/posts', function (req, res) {
         if (err)
             res.send(err);
         //messages now shown from newest to oldest
+        for (var i = 0; i < posts.length; i++) {
+            var words = posts[i].name.split(" ");
+            var result = "";
+            for (var j = 0; j < words.length; j++) {
+                result += "Verta" + words[j] + " ";
+            }
+            posts[i].name = result;
+        }
         res.json(posts);
     });
 });
