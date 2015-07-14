@@ -106,7 +106,8 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
                     '    </md-button>' +
                     '  </div>' +
                     '  <div class="md-actions" >' +
-                    '    <md-button flex ng-if="ctrl.new_post.category!=0 || ctrl.password == 1234" ng-click="ctrl.submitDialog()">' +
+                    '    <md-button flex ng-if="ctrl.new_post.category!=0 || ctrl.password == 1234" ng-click="ctrl.submitDialog();btn = true"'+
+					'		ng-init="btn = false" ng-disabled="btn">' +
                     '      Submit' +
                     '    </md-button>' +
                     '  </div>' +
@@ -160,7 +161,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
         
  
         $scope.confirmDelete = function confirmDelete(id) {
-            var password = prompt("WATS THE PASSWD", "Password123");
+            var password = prompt("Delete Post?", "");
             $http.delete('api/posts?id=' + id + '&password=' + password).success(function (data) {
                 $scope.post_list = data;
                 $mdDialog.hide();
