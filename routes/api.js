@@ -116,7 +116,7 @@ router.post('/posts', function (req, res) {
         imageURL: req.body.imageURL,
         category: parseInt(req.body.category),
         author: author,
-        password: password
+        password: req.body.password
     }, function (err) {
         Post.find({}).sort({ timestamp: -1 }).exec(function (err, posts) {
             if (err)
