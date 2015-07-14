@@ -195,14 +195,14 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
 			return ;
 		}
 	}
-	function showDialog($event,name,desc,author,id,category) {
+	function showDialog($event,name,desc,author,id,category,url) {
 		var colors = ['#FF5200',"#00A3E0","#009917","#53565A", "#B90E2F", "#b388ff"];
 		$scope.name = name;
 		$scope.desc = desc;
 		$scope.author = author;
 		$scope.id = id;
 		$scope.color = colors[category];
-
+		$scope.url = url;
 
             var parentEl = angular.element(document.querySelector('md-content'));
             alert = $mdDialog.alert({
@@ -221,6 +221,7 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
 					'		</div> '+
 					'	</md-toolbar>' +
                     '  <md-dialog-content>' +
+					'	<img src="{{ctrl.url}}" style="max-width:100%;"> ' +
 					'	<font size="2"><i>Posted by:{{ctrl.author}}</i></font>'+
                     '  <md-divider></md-divider>'+
 					'	 <h5><pre>{{ctrl.desc}}</pre></h5>' +
@@ -237,6 +238,7 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
 					desc: $scope.desc,
 					author: $scope.author,
 					color: $scope.color,
+					url: $scope.url,
 					id: $scope.id
                 },
                 bindToController: true,
