@@ -348,25 +348,10 @@ app.config(function ($mdThemingProvider) {
     
     // Register the new color palette map with the name <code>neonRed</code>
     $mdThemingProvider.definePalette('vertaforeOrange', vertaforeOrange);
-
+    
     $mdThemingProvider
     .theme('default')
     .primaryPalette('vertaforeOrange')
     .accentPalette('vertaforeOrange')
     .warnPalette('red')
-})
-
-// external js: isotope.pkgd.js
-
-$(document).ready( function() {
-
-  $('.grid').isotope({
-  	layoutMode: 'fitRows',
-    itemSelector: '.grid-item'
-  });
-
 });
-
-
-
-
