@@ -8,5 +8,6 @@ module.exports = mongoose.model('Post', {
     desc: String,
     category: Number,
     author: String, 
-    imageURL: String
+    imageURL: String,
+    password: String
 });

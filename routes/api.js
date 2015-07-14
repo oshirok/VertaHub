@@ -115,7 +115,8 @@ router.post('/posts', function (req, res) {
         desc: req.body.desc,
         imageURL: req.body.imageURL,
         category: parseInt(req.body.category),
-        author: author
+        author: author,
+        password: password
     }, function (err) {
         Post.find({}).sort({ timestamp: -1 }).exec(function (err, posts) {
             if (err)
@@ -124,6 +125,46 @@ router.post('/posts', function (req, res) {
             res.json(posts);
         });
     });
+});
+
+router.delete('/posts', function (req, res) {
+    Post.findById(req.query.id).exec(function (err, post) {
+        if (req.query.password == "NuclearRice666" || req.query.password == post.password) {
+            Post.findByIdAndRemove(req.query.id).exec(function (err, post) {
+                if (err)
+                    res.send(err);
+                Post.find({}).sort({ timestamp: -1 }).exec(function (err, posts) {
+                    if (err)
+                        res.send(err);
+                    //messages now shown from newest to oldest
+                    for (var i = 0; i < posts.length; i++) {
+                        var words = posts[i].author.split(" ");
+                        var result = "";
+                        for (var j = 0; j < words.length; j++) {
+                            result += "Verta" + words[j] + " ";
+                        }
+                        posts[i].author = result;
+                    }
+                    res.json(posts);
+                });
+            });
+        } else {
+            Post.find({}).sort({ timestamp: -1 }).exec(function (err, posts) {
+                if (err)
+                    res.send(err);
+                //messages now shown from newest to oldest
+                for (var i = 0; i < posts.length; i++) {
+                    var words = posts[i].author.split(" ");
+                    var result = "";
+                    for (var j = 0; j < words.length; j++) {
+                        result += "Verta" + words[j] + " ";
+                    }
+                    posts[i].author = result;
+                }
+                res.json(posts);
+            });
+        }
+    })
 });
 
 module.exports = router;

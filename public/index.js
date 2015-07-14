@@ -159,6 +159,26 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
         };
         
  
+        $scope.confirmDelete = function confirmDelete(id) {
+            var password = prompt("WATS THE PASSWD", "Password123");
+            $http.delete('api/posts?id=' + id + '&password=' + password).success(function (data) {
+                $scope.post_list = data;
+                $mdDialog.hide();
+                console.log(data.length);
+                var colors = ['#FF5200', "#00A3E0", "#009917", "#53565A", "#B90E2F", "#b388ff"];
+                for (var i = 0; i < $scope.post_list.length; i++) {
+                    if ($scope.post_list[i].imageURL != null) {
+                        $scope.post_list[i].background = "url('" + $scope.post_list[i].imageURL + "')"; //custom background
+                    }
+                    else {
+                        $scope.post_list[i].background = colors[$scope.post_list[i].category];
+                        console.log($scope.post_list[i].background);
+                    }
+                }
+            }).error(function (data) {
+                console.log("ERROR" + data);
+            });
+        }
     }]);
 
 app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
@@ -194,7 +214,7 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
 					'		<div class="md-toolbar-tools md-actions" layout="horizontal">' +
 					'			<h2> {{ctrl.name}} </h2>' +
 					'			<span flex></span>' +
-                    '    		<md-button ng-click="confirmDelete()">' + //Delete post
+                    '    		<md-button ng-click="ctrl.confirmDelete(ctrl.id)">' + //Delete post
                     '      			<md-icon md-font-icon="fa-edit" class="fa s16 white"></md-icon>' +
                     '    		</md-button>' +
 					'		</div> '+
@@ -211,6 +231,7 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
                     '  </div>' +
                     '</md-dialog>',
                 locals: {
+                    confirmDelete: $scope.confirmDelete,
 					name: $scope.name,
 					desc: $scope.desc,
 					author: $scope.author,
@@ -228,9 +249,6 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
                 alert = undefined;
             });
     }
-	$scope.delete = function(id){ //THIS IS WHERE THE DELETE FUNCTION IS NOW I DONT KNOW WHERE IT'S SUPPOSED TO GO
-		$http.delete
-	}
 })
 
 app.config(function ($mdIconProvider) {
@@ -240,12 +258,7 @@ app.controller('DialogController', function ($http, $scope, $mdDialog) {
     //alert( this.closeDialog );
     //this.closeDialog = $scope.closeDialog;
 
-	$scope.confirmDelete = function confirmDelete(){
-		var x = confirm("Are you sure you want to delete this post?");
-		if(x==true){
-			                                          // 	write the call to delete function here;
-		}
-	}
+	
 
     $scope.closeDialog = function() {
       $mdDialog.hide();
