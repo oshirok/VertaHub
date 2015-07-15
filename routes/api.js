@@ -87,15 +87,6 @@ router.get('/posts', function (req, res) {
     Post.find({}).sort({ timestamp: -1 }).exec(function (err, posts) {
         if (err)
             res.send(err);
-        //messages now shown from newest to oldest
-        for (var i = 0; i < posts.length; i++) {
-            var words = posts[i].author.split(" ");
-            var result = "";
-            for (var j = 0; j < words.length; j++) {
-                result += "Verta" + words[j] + " ";
-            }
-            posts[i].author = result;
-        }
         res.json(posts);
     });
 });
@@ -136,15 +127,6 @@ router.delete('/posts', function (req, res) {
                 Post.find({}).sort({ timestamp: -1 }).exec(function (err, posts) {
                     if (err)
                         res.send(err);
-                    //messages now shown from newest to oldest
-                    for (var i = 0; i < posts.length; i++) {
-                        var words = posts[i].author.split(" ");
-                        var result = "";
-                        for (var j = 0; j < words.length; j++) {
-                            result += "Verta" + words[j] + " ";
-                        }
-                        posts[i].author = result;
-                    }
                     res.json(posts);
                 });
             });
@@ -152,15 +134,6 @@ router.delete('/posts', function (req, res) {
             Post.find({}).sort({ timestamp: -1 }).exec(function (err, posts) {
                 if (err)
                     res.send(err);
-                //messages now shown from newest to oldest
-                for (var i = 0; i < posts.length; i++) {
-                    var words = posts[i].author.split(" ");
-                    var result = "";
-                    for (var j = 0; j < words.length; j++) {
-                        result += "Verta" + words[j] + " ";
-                    }
-                    posts[i].author = result;
-                }
                 res.json(posts);
             });
         }
