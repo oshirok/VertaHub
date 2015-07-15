@@ -91,7 +91,9 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
                     '           			<input type="text" ng-model="ctrl.password">' +
                     '       			</md-input-container>' +
 					'				</div>'+
-					'          		<md-icon md-font-icon="fa-camera" class="fa s16 black ng-init="urlHidden = true" ng-click="urlHidden = !urlHidden" class="md-raised"></md-icon> Insert image' +
+					'				<span ng-init="urlHidden = false" ng-click="urlHidden = !urlHidden">'+
+					'          		<md-icon md-font-icon="fa-camera" class="fa s16 black class="md-raised"></md-icon> Insert image ' +
+					'				</span>'+
                     '       		<md-input-container ng-show="urlHidden" flex>' +
                     '           		<label>URL</label>' +
                     '           		<input ng-model="ctrl.new_post.imageURL">' +
