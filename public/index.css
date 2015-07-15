@@ -156,7 +156,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
   }
 .gridListdemoDynamicTiles md-grid-tile-footer{
 
+}
+
+.gridListdemoDynamicTiles md-grid-tile-header{
+    background-color: rgba(0, 0, 0, 0.5);
 }  
+
 .gridPad{
 	height:100%;
 	width:8px;
