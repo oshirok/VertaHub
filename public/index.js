@@ -222,8 +222,8 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
 					'	</md-toolbar>' +
                     '  <md-dialog-content>' +
 					'	<img src="{{ctrl.url}}" style="max-width:100%;"> ' +
+                    '  <md-divider></md-divider>' +
 					'	<font size="2"><i>Posted by:{{ctrl.author}}</i></font>'+
-                    '  <md-divider></md-divider>'+
 					'	 <h5><pre>{{ctrl.desc}}</pre></h5>' +
 					'  </md-dialog-content>' +
                     '  <div class="md-actions" >' +
