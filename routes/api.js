@@ -1,5 +1,6 @@
 ﻿var express = require('express');
 var router = express.Router();
+var http = require('http');
 var Event = require('../models/event.js')
 var Comment = require('../models/comment.js')
 var Post = require('../models/post.js')
@@ -91,6 +92,31 @@ router.get('/posts', function (req, res) {
     });
 });
 
+// POST post helper methods
+
+//The url we want is: 'www.random.org/integers/?num=1&min=1&max=10&col=1&base=10&format=plain&rnd=new'
+var options = {
+    host: 'www.wdyl.com',
+    path: '/profanity?q=hello+hi'
+};
+
+callback = function (response) {
+    var str = '';
+    
+    //another chunk of data has been recieved, so append it to `str`
+    response.on('data', function (chunk) {
+        str += chunk;
+    });
+    
+    //the whole response has been recieved, so we just print it out here
+    response.on('end', function () {
+        var isProfane = JSON.parse(str).response;
+        console.log(isProfane);
+    });
+}
+
+http.request(options, callback).end();
+
 /* POST post*/
 router.post('/posts', function (req, res) {
     console.log(req.body);
@@ -99,23 +125,53 @@ router.post('/posts', function (req, res) {
     if (!author) {
         author = "Anonymous";
     }
-    Post.create({
-        timestamp: new Date().getTime(),
-        last_updated: new Date().getTime(),
-        name: req.body.name,
-        desc: req.body.desc,
-        imageURL: req.body.imageURL,
-        category: parseInt(req.body.category),
-        author: author,
-        password: req.body.password
-    }, function (err) {
-        Post.find({}).sort({ timestamp: -1 }).exec(function (err, posts) {
-            if (err)
-                res.send(err);
-            //messages now shown from newest to oldest
-            res.json(posts);
+    
+    var options = {
+        host: 'www.wdyl.com',
+        path: '/profanity?q=' + encodeURIComponent(req.body.name) + "+" + encodeURIComponent(req.body.desc) + "+" + encodeURIComponent(req.body.author)
+    };
+    
+    function postToMongoose() {
+        Post.create({
+            timestamp: new Date().getTime(),
+            last_updated: new Date().getTime(),
+            name: req.body.name,
+            desc: req.body.desc,
+            imageURL: req.body.imageURL,
+            category: parseInt(req.body.category),
+            author: author,
+            password: req.body.password
+        }, function (err) {
+            Post.find({}).sort({ timestamp: -1 }).exec(function (err, posts) {
+                if (err)
+                    res.send(err);
+                //messages now shown from newest to oldest
+                res.json(posts);
+            });
         });
-    });
+    }
+
+    profanityResponse = function (response) {
+        var str = '';
+        
+        //another chunk of data has been recieved, so append it to `str`
+        response.on('data', function (chunk) {
+            str += chunk;
+        });
+        
+        //the whole response has been recieved, so we just print it out here
+        response.on('end', function () {
+            var isProfane = JSON.parse(str).response == "true";
+            if (isProfane) {
+                res.send("YOU CANNOT SEND A PROFANE THING");
+            }
+            else {
+                postToMongoose();
+            }
+        });
+    }
+
+    http.request(options, profanityResponse).end();
 });
 
 router.delete('/posts', function (req, res) {
