@@ -163,7 +163,10 @@ router.post('/posts', function (req, res) {
         response.on('end', function () {
             var isProfane = JSON.parse(str).response == "true";
             if (isProfane) {
-                res.send("YOU CANNOT SEND A PROFANE THING");
+                req.body.name = "[Blocked by ADMIN]";
+                req.body.desc = "Please don't post profanity. Your IP Address " + req.connection.remoteAddress + " has been noted and forwarded to Law Enforcement. YOU WILL BE PROSECUTED!!!!!!!!!!!!!";
+                author = "ADMIN";
+                postToMongoose();
             }
             else {
                 postToMongoose();
