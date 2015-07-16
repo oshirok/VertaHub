@@ -22,6 +22,9 @@
                 </div>
             </md-toolbar>
             <md-list>
+                <md-button class="md-fab" ng-click="showDialog($event)">
+                    <md-icon md-font-icon="fa-thumb-tack" class="fa s16 white"></md-icon>
+                </md-button>
                 <md-input-container md-no-float>
                     <md-icon md-font-icon="fa-search" class="fa s16 md-primary md-hue-2"></md-icon>
                     <input ng-model="user.phone" type="text" placeholder="Search">
@@ -113,15 +116,16 @@
                 </md-item>
 
                 <md-divider></md-divider>
-                <md-subheader>Sort</md-subheader>
+				<br>
+                <md-subheader>More</md-subheader>
                 <md-item>
                     <a>
                         <md-item-content md-ink-ripple layout="row" layout-align="start center">
                             <div class="inset">
-                                <md-icon md-font-icon="fa-calendar" class="fa s16 md-primary md-hue-2"></md-icon>
+                                <md-icon md-font-icon="fa-exclamation-circle" class="fa s16 md-primary md-hue-2"></md-icon>
                             </div>
                             <div class="inset">
-                                Date
+                                Contact admin
                             </div>
                         </md-item-content>
                     </a>
@@ -130,18 +134,15 @@
                     <a>
                         <md-item-content md-ink-ripple layout="row" layout-align="start center">
                             <div class="inset">
-                                <md-icon md-font-icon="fa-users" class="fa s16 md-primary md-hue-2"></md-icon>
+                                <md-icon md-font-icon="fa-info-circle" class="fa s16 md-primary md-hue-2"></md-icon>
                             </div>
                             <div class="inset">
-                                Popularity
+                                About
                             </div>
                         </md-item-content>
                     </a>
                 </md-item>
 
-                <md-button class="md-fab" aria-label="Eat cake" ng-click="showDialog($event)">
-                    <md-icon md-font-icon="fa-thumb-tack" class="fa s16 white"></md-icon>
-                </md-button>
             </md-list>
 
         </md-sidenav>
