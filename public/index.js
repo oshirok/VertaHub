@@ -235,6 +235,26 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
                     '  <md-divider></md-divider>' +
 					'	<font size="2"><i>Posted by:{{ctrl.author}}</i></font>'+
 					'	 <h5><pre>{{ctrl.desc}}</pre></h5>' +
+                    '    <md-list>' +
+                    '    <md-subheader class="md-no-sticky">Comments</md-subheader>' +
+                    '    <md-list-item class="md-3-line" ng-repeat="comment in comments">' +
+                    '        <i class="fa fa-user md-avatar fa-3x"></i>' +
+                    '        <div class="md-list-item-text">' +
+                    '           <h4>{{comment.text}}</h4>' +
+                    '           <p>{{comment.timestamp}}</p>' +
+                    '        </div>' +
+                    '    </md-list-item>' +
+                    '    <md-divider ></md-divider>' +
+                    '    <form layout="horizontal" flex>' +
+                    '    <md-input-container flex>' +
+                    '    <label>Comment</label>' +
+                    '    <textarea flex ng-model="newComment.text" columns="1" md-maxlength="150"></textarea>' +
+                    '    </md-input-container>' +
+                    '    <md-button flex ng-click="submitComment()">' +
+                    '      Submit' +
+                    '    </md-button>' +
+                    '    </form>' +
+                    '    </md-list>' +  
 					'  </md-dialog-content>' +
                     '  <div class="md-actions" >' +
                     '    <md-button flex ng-click="closeDialog()">' +
@@ -267,14 +287,30 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
 app.config(function ($mdIconProvider) {
     $mdIconProvider.iconSet("avatar", 'icons/avatar-icons.svg', 128);
 });
-app.controller('DialogController', function ($http, $scope, $mdDialog) {
+app.controller('DialogController', function ($http, $scope, $mdDialog, id) {
     //alert( this.closeDialog );
     //this.closeDialog = $scope.closeDialog;
-
-	
+    
+    console.log(id);
+    
+    $http.get('/api/comments?id=' + id).success(function (data) {
+        $scope.comments = data;
+    }).error(function (error, data){
+        console.log(error);
+    });
+    
+    $scope.submitComment = function () {
+        $scope.newComment.postId = id;
+        $http.post('/api/comments', $scope.newComment).success(function (data) {
+            $scope.newComment = {};
+            $scope.comments = data;
+        }).error(function (error) {
+            console.log(error);
+        });
+    };
 
     $scope.closeDialog = function() {
-      $mdDialog.hide();
+        $mdDialog.hide();
     };
 });
 

@@ -57,8 +57,8 @@ router.post('/attend', function (req, res) {
 
 /* GET comments listing. */
 router.get('/comments', function (req, res) {
-    if (!req.query.postId) res.send("No comments found!?");
-    Comment.find({ 'postId': req.query.postId }).sort({ timestamp: -1 }).exec(function (err, comments) {
+    if (!req.query.id) res.send("No comments found!?");
+    else Comment.find({ 'postId': req.query.id }).sort({ timestamp: 1 }).exec(function (err, comments) {
         if (err)
             res.send(err);
         //messages now shown from newest to oldest
@@ -68,13 +68,14 @@ router.get('/comments', function (req, res) {
 
 /* POST comment*/
 router.post('/comments', function (req, res) {
-    if (!req.body.name) return;
+    if (!req.body.text) return;
+    if (!req.body.postId) return;
     Comment.create({
         timestamp: new Date().getTime(),
         postId: req.body.postId,
-        text: string
+        text: req.body.text,
     }, function (err) {
-        Comment.find({ 'postId': req.query.postId }).sort({ timestamp: -1 }).exec(function (err, comments) {
+        Comment.find({ 'postId': req.body.postId }).sort({ timestamp: 1 }).exec(function (err, comments) {
             if (err)
                 res.send(err);
             //messages now shown from newest to oldest
@@ -114,8 +115,6 @@ callback = function (response) {
         console.log(isProfane);
     });
 }
-
-http.request(options, callback).end();
 
 /* POST post*/
 router.post('/posts', function (req, res) {
