@@ -165,8 +165,8 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
 			if(url == null){
 				return rgba(0, 0, 0, 0.5);
 			}
-			var colors = ['rgba(255, 82, 0,.5)', "rgba(0, 163, 224, .5)", "rgba(0, 153, 23, .5)",
-				"rgba(83, 86, 90, .5)", "rgba(185, 14, 47, .5)", "rgba(179, 136, 255, .5)"];
+			var colors = ['rgba(255, 82, 0,.8)', "rgba(0, 163, 224, .8)", "rgba(0, 153, 23, .8)",
+				"rgba(83, 86, 90, .8)", "rgba(185, 14, 47, .8)", "rgba(179, 136, 255, .8)"];
 			return colors[category];
 		}
 		
