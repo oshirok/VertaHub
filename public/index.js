@@ -163,7 +163,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
         
 		$scope.chooseBackground = function chooseBackground(category,url){
 			if(url == null){
-				return rgba(0, 0, 0, 0.5);
+				return 'rgba(0, 0, 0, 0.5)';
 			}
 			var colors = ['rgba(255, 82, 0,.8)', "rgba(0, 163, 224, .8)", "rgba(0, 153, 23, .8)",
 				"rgba(83, 86, 90, .8)", "rgba(185, 14, 47, .8)", "rgba(179, 136, 255, .8)"];
