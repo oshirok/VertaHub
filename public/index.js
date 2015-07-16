@@ -6,7 +6,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
         $scope.showDialog = showDialog;
         $scope.items = [1, 2, 3];
         $scope.new_post = {};
-        
+
         $http.get('/api/posts')
         .success(function (data) {
             $scope.post_list = data;
@@ -307,11 +307,7 @@ app.controller('DialogController', function ($http, $scope, $mdDialog, $rootScop
             $scope.comments = data;
         }).error(function (error, status, headers, config) {
             console.log(error + ', ' + status)
-            if (status == 403) {
-                $rootScope.isBigAlert = true;
-                console.log('hi');
-                console.log($rootScope.isBigAlert);
-            }
+            
         });
     };
 

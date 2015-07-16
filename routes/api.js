@@ -103,7 +103,8 @@ router.post('/comments', function (req, res) {
         response.on('end', function () {
             var isProfane = JSON.parse(str).response == "true";
             if (isProfane) {
-                res.send(403, "PROFANITY DETECTED");
+                req.body.text = "[deleted by ADMIN]";
+                postComment();
             }
             else {
                 postComment();
