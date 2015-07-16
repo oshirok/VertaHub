@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="index.css">
     <meta name="viewport" content="initial-scale=1" />
 </head>
-<body layout="column" ng-controller="AppCtrl">
+<body layout="column" ng-controller="AppCtrl" ng-init="all = true; number = 0">
+    <div class="big-alert" ng-init="$rootScope.isBigAlert=false" ng-show="$rootScope.isBigAlert">Please don't abuse VertaBoard</div>
     <div layout="row" flex>
         <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
 
@@ -30,7 +31,7 @@
                     <a>
                         <md-item-content md-ink-ripple layout="row" layout-align="start center">
                             <div class="inset">
-                                <md-icon md-font-icon="fa-cutlery  " class="fa s16 md-primary md-hue-2"></md-icon>
+                                <md-icon md-font-icon="fa-cutlery  " class="fa s16 md-primary md-hue-2" ng-click="all = false; number = 4"></md-icon>
                             </div>
                             <div class="inset">
                                 Food
@@ -42,7 +43,7 @@
                     <a>
                         <md-item-content md-ink-ripple layout="row" layout-align="start center">
                             <div class="inset">
-                                <md-icon md-font-icon="fa-futbol-o" class="fa s16 md-primary md-hue-2"></md-icon>
+                                <md-icon md-font-icon="fa-futbol-o" class="fa s16 md-primary md-hue-2" ng-click="all = true"></md-icon>
                             </div>
                             <div class="inset">
                                 Sports
@@ -92,7 +93,7 @@
             <md-grid-list md-cols-sm="2" md-cols-md="2" md-cols-lg="6" md-cols-gt-lg="8"
                           md-row-height-gt-md="1:1" md-row-height="4:3"
                           md-gutter="8px" md-gutter-gt-sm="10px">
-                <md-grid-tile class="dynamicBox hvr-grow" ng-repeat="post in post_list" 
+                <md-grid-tile class="dynamicBox hvr-grow" ng-repeat="post in post_list" ng-if="all == true || post.category == number"
 							  ng-click="showDialog($event,post.name,post.desc,post.author,post._id,post.category,post.imageURL)" 
                               md-rowspan="1"
                               md-colspan="2"

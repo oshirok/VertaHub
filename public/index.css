@@ -4,6 +4,13 @@ body {
     background-color: #dddddd;
 }
 
+.big-alert {
+    background-color: #ff0000;
+    height: 100%;
+    width: 100%;
+    color: white;
+}
+
 md-content.md-default-theme {
   background-color: #dddddd;
 }

@@ -70,18 +70,49 @@ router.get('/comments', function (req, res) {
 router.post('/comments', function (req, res) {
     if (!req.body.text) return;
     if (!req.body.postId) return;
-    Comment.create({
-        timestamp: new Date().getTime(),
-        postId: req.body.postId,
-        text: req.body.text,
-    }, function (err) {
-        Comment.find({ 'postId': req.body.postId }).sort({ timestamp: 1 }).exec(function (err, comments) {
-            if (err)
-                res.send(err);
-            //messages now shown from newest to oldest
-            res.json(comments);
+    
+    var options = {
+        host: 'www.wdyl.com',
+        path: '/profanity?q=' + encodeURIComponent(req.body.text)
+    };
+
+    function postComment() {
+        Comment.create({
+            timestamp: new Date().getTime(),
+            postId: req.body.postId,
+            text: req.body.text,
+        }, function (err) {
+            Comment.find({ 'postId': req.body.postId }).sort({ timestamp: 1 }).exec(function (err, comments) {
+                if (err)
+                    res.send(err);
+                //messages now shown from newest to oldest
+                res.json(comments);
+            });
         });
-    });
+    }
+
+    profanityResponse = function (response) {
+        var str = '';
+        
+        //another chunk of data has been recieved, so append it to `str`
+        response.on('data', function (chunk) {
+            str += chunk;
+        });
+        
+        //the whole response has been recieved, so we just print it out here
+        response.on('end', function () {
+            var isProfane = JSON.parse(str).response == "true";
+            if (isProfane) {
+                res.send(403, "PROFANITY DETECTED");
+            }
+            else {
+                postComment();
+            }
+        });
+    }
+
+    
+    http.request(options, profanityResponse).end();
 });
 
 /* GET post listing. */

@@ -168,7 +168,8 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
 			var colors = ['rgba(255, 82, 0,.8)', "rgba(0, 163, 224, .8)", "rgba(0, 153, 23, .8)",
 				"rgba(83, 86, 90, .8)", "rgba(185, 14, 47, .8)", "rgba(179, 136, 255, .8)"];
 			return colors[category];
-		}
+        }
+
 		
         $scope.confirmDelete = function confirmDelete(id) {
             var password = prompt("Delete Post?", "");
@@ -287,7 +288,7 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
 app.config(function ($mdIconProvider) {
     $mdIconProvider.iconSet("avatar", 'icons/avatar-icons.svg', 128);
 });
-app.controller('DialogController', function ($http, $scope, $mdDialog, id) {
+app.controller('DialogController', function ($http, $scope, $mdDialog, $rootScope, id) {
     //alert( this.closeDialog );
     //this.closeDialog = $scope.closeDialog;
     
@@ -304,8 +305,13 @@ app.controller('DialogController', function ($http, $scope, $mdDialog, id) {
         $http.post('/api/comments', $scope.newComment).success(function (data) {
             $scope.newComment = {};
             $scope.comments = data;
-        }).error(function (error) {
-            console.log(error);
+        }).error(function (error, status, headers, config) {
+            console.log(error + ', ' + status)
+            if (status == 403) {
+                $rootScope.isBigAlert = true;
+                console.log('hi');
+                console.log($rootScope.isBigAlert);
+            }
         });
     };
 
@@ -343,3 +349,7 @@ app.config(function ($mdThemingProvider) {
     .accentPalette('vertaforeOrange')
     .warnPalette('red')
 });
+
+function profanityAlert() {
+    alert('DO NOT POST PROFANE THINGS');
+}
