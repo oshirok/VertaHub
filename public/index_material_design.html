@@ -99,7 +99,7 @@
                               md-colspan-sm="2"
                               ng-style="{'background': post.background, 'background-size': 'cover'}">
                     <md-icon md-svg-icon="{{post.icon}}"></md-icon>
-						<md-grid-tile-header layout="vertical">
+						<md-grid-tile-header ng-style="{'background-color':chooseBackground(post.category,post.imageURL)}">
 							<h3>{{post.name}}</h3><br>
 						</md-grid-tile-header>
 						<md-grid-tile-footer>

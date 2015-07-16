@@ -80,10 +80,10 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
 					'					<pre><h2>Category:  </h2> </pre>' +
 					'					<md-select ng-init="ctrl.new_post.category=5" ng-model="ctrl.new_post.category" >'+
 					'						<md-option ng-value="0">Admin</md-option>'+
-					'						<md-option ng-value="1">Event</md-option>'+
+					'						<md-option ng-value="1">Recreation</md-option>'+
 					'						<md-option ng-value="2">Ad</md-option>'+
 					'						<md-option ng-value="3">Discussion</md-option>'+
-					'						<md-option ng-value="4">Urgent</md-option>'+
+					'						<md-option ng-value="4">Food</md-option>'+
 					'						<md-option ng-value="5">Misc</md-option>'+
 					'					</md-select>'+
                     '       			<md-input-container ng-init="ctrl.password = null" ng-if="ctrl.new_post.category==0" flex>' +
@@ -161,7 +161,15 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
             });
         };
         
- 
+		$scope.chooseBackground = function chooseBackground(category,url){
+			if(url == null){
+				return rgba(0, 0, 0, 0.5);
+			}
+			var colors = ['rgba(255, 82, 0,.5)', "rgba(0, 163, 224, .5)", "rgba(0, 153, 23, .5)",
+				"rgba(83, 86, 90, .5)", "rgba(185, 14, 47, .5)", "rgba(179, 136, 255, .5)"];
+			return colors[category];
+		}
+		
         $scope.confirmDelete = function confirmDelete(id) {
             var password = prompt("Delete Post?", "");
             $http.delete('api/posts?id=' + id + '&password=' + password).success(function (data) {
