@@ -124,7 +124,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
                 },
                 bindToController: true,
                 controllerAs: 'ctrl',
-                controller: 'DialogController'
+                controller: 'newPostDialogController'
             });
             
             $mdDialog
@@ -274,7 +274,7 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
                 },
                 bindToController: true,
                 controllerAs: 'ctrl',
-                controller: 'DialogController'
+                controller: 'postDialogController'
             });
             
             $mdDialog
@@ -288,7 +288,17 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
 app.config(function ($mdIconProvider) {
     $mdIconProvider.iconSet("avatar", 'icons/avatar-icons.svg', 128);
 });
-app.controller('DialogController', function ($http, $scope, $mdDialog, $rootScope, id) {
+
+app.controller('newPostDialogController', function ($http, $scope, $mdDialog, $rootScope) {
+    //alert( this.closeDialog );
+    //this.closeDialog = $scope.closeDialog;
+
+    $scope.closeDialog = function() {
+        $mdDialog.hide();
+    };
+});
+
+app.controller('postDialogController', function ($http, $scope, $mdDialog, $rootScope, id) {
     //alert( this.closeDialog );
     //this.closeDialog = $scope.closeDialog;
     
@@ -296,7 +306,7 @@ app.controller('DialogController', function ($http, $scope, $mdDialog, $rootScop
     
     $http.get('/api/comments?id=' + id).success(function (data) {
         $scope.comments = data;
-    }).error(function (error, data){
+    }).error(function (error, data) {
         console.log(error);
     });
     
@@ -310,11 +320,12 @@ app.controller('DialogController', function ($http, $scope, $mdDialog, $rootScop
             
         });
     };
-
-    $scope.closeDialog = function() {
+    
+    $scope.closeDialog = function () {
         $mdDialog.hide();
     };
 });
+
 
 app.controller('myCtrl', function($scope) {
     $scope.firstName = "John";
