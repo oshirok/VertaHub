@@ -214,17 +214,18 @@ router.delete('/posts', function (req, res) {
             Post.findByIdAndRemove(req.query.id).exec(function (err, post) {
                 if (err)
                     res.send(err);
+                else
                 Post.find({}).sort({ timestamp: -1 }).exec(function (err, posts) {
                     if (err)
                         res.send(err);
-                    res.json(posts);
+                    else res.json(posts);
                 });
             });
         } else {
             Post.find({}).sort({ timestamp: -1 }).exec(function (err, posts) {
                 if (err)
                     res.send(err);
-                res.json(posts);
+                else res.json(posts);
             });
         }
     })

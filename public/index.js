@@ -224,7 +224,7 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
 					'		<div class="md-toolbar-tools md-actions" layout="horizontal">' +
 					'			<h2> {{ctrl.post.name}} </h2>' +
 					'			<span flex></span>' +
-                    '    		<md-button ng-click="ctrl.confirmDelete(ctrl.post.id)">' + //Delete post
+                    '    		<md-button ng-click="ctrl.confirmDelete(ctrl.post._id)">' + //Delete post
                     '      			<md-icon md-font-icon="fa-edit" class="fa s16 white"></md-icon>' +
                     '    		</md-button>' +
 					'		</div> '+
