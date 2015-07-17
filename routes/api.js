@@ -150,7 +150,7 @@ callback = function (response) {
 /* POST post*/
 router.post('/posts', function (req, res) {
     console.log(req.body);
-    if (!req.body.name) return;
+    if (!req.body.name) res.send(403, "YOU HAVE BEEN TERMINATED");
     var author = req.body.author;
     if (!author) {
         author = "Anonymous";
