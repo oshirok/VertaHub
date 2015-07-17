@@ -20,7 +20,8 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
 				else{
 					$scope.post_list[i].background = colors[$scope.post_list[i].category];
 					console.log($scope.post_list[i].background);
-				}
+                }
+                $scope.post_list[i].mstimestamp = Date.parse($scope.post_list[i].timestamp) / 1000;
             }
 			/*for(i in data){
 				console.log(i);
@@ -152,7 +153,8 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
 					else{
 						$scope.post_list[i].background = colors[$scope.post_list[i].category];
 						console.log($scope.post_list[i].background);
-					}
+                    }
+                    $scope.post_list[i].mstimestamp = Date.parse($scope.post_list[i].timestamp) / 1000;
 				}
 					$mdDialog.hide();
 				})
@@ -206,43 +208,39 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
 			return ;
 		}
 	}
-	function showDialog($event,name,desc,author,id,category,url) {
+	function showDialog($event,post) {
 		var colors = ['#FF5200',"#00A3E0","#009917","#53565A", "#B90E2F", "#b388ff"];
-		$scope.name = name;
-		$scope.desc = desc;
-		$scope.author = author;
-		$scope.id = id;
-		$scope.color = colors[category];
-		$scope.url = url;
+        $scope.post = post;
+        $scope.post.color = colors[$scope.post.category];
 
             var parentEl = angular.element(document.querySelector('md-content'));
             alert = $mdDialog.alert({
                 parent: parentEl,
                 targetEvent: $event,
                 template:
-                    '<md-dialog flex="40"aria-label="{{ctrl.name}}">' + //Pop up post
+                    '<md-dialog flex="40"aria-label="{{ctrl.post.name}}">' + //Pop up post
 					'	<form> ' +
-					'	<md-toolbar style="background-color:{{ctrl.color}}">' +
+					'	<md-toolbar style="background-color:{{ctrl.post.color}}">' +
 					'		<div class="md-toolbar-tools md-actions" layout="horizontal">' +
-					'			<h2> {{ctrl.name}} </h2>' +
+					'			<h2> {{ctrl.post.name}} </h2>' +
 					'			<span flex></span>' +
-                    '    		<md-button ng-click="ctrl.confirmDelete(ctrl.id)">' + //Delete post
+                    '    		<md-button ng-click="ctrl.confirmDelete(ctrl.post.id)">' + //Delete post
                     '      			<md-icon md-font-icon="fa-edit" class="fa s16 white"></md-icon>' +
                     '    		</md-button>' +
 					'		</div> '+
 					'	</md-toolbar>' +
                     '  <md-dialog-content>' +
-					'	<img src="{{ctrl.url}}" style="max-width:100%; margin-left:auto; margin-right:auto;display:block;"> <br>' +
+					'	<img src="{{ctrl.post.imageURL}}" style="max-width:100%; margin-left:auto; margin-right:auto;display:block;"> <br>' +
                     '  <md-divider></md-divider>' +
-					'	<font size="2"><i>Posted by:{{ctrl.author}}</i></font>'+
-					'	 <h5><pre>{{ctrl.desc}}</pre></h5>' +
+					'	<font size="2"><i>Posted by:{{ctrl.post.author}} | <span data-livestamp={{ctrl.post.timestamp}}></span></i></font>'+
+					'	 <h5><pre>{{ctrl.post.desc}}</pre></h5>' +
                     '    <md-list>' +
                     '    <md-subheader class="md-no-sticky">Comments</md-subheader>' +
                     '    <md-list-item class="md-3-line" ng-repeat="comment in comments">' +
                     '        <i class="fa fa-user md-avatar fa-3x"></i>' +
                     '        <div class="md-list-item-text">' +
                     '           <h4>{{comment.text}}</h4>' +
-                    '           <p>{{comment.timestamp}}</p>' +
+                    '           <p><span data-livestamp={{comment.timestamp}}></span></p>' +
                     '        </div>' +
                     '    </md-list-item>' +
                     '    <md-divider ></md-divider>' +
@@ -265,12 +263,8 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
                     '</md-dialog>',
                 locals: {
                     confirmDelete: $scope.confirmDelete,
-					name: $scope.name,
-					desc: $scope.desc,
-					author: $scope.author,
-					color: $scope.color,
-					url: $scope.url,
-					id: $scope.id
+					post: $scope.post,
+                    id: $scope.post._id
                 },
                 bindToController: true,
                 controllerAs: 'ctrl',

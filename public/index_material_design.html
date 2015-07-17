@@ -162,7 +162,7 @@
                           md-row-height-gt-md="1:1" md-row-height="4:3"
                           md-gutter="8px" md-gutter-gt-sm="10px">
                 <md-grid-tile class="dynamicBox hvr-grow" ng-repeat="post in post_list" ng-if="all == true || post.category == number"
-							  ng-click="showDialog($event,post.name,post.desc,post.author,post._id,post.category,post.imageURL)" 
+							  ng-click="showDialog($event,post)" 
                               md-rowspan="1"
                               md-colspan="2"
                               md-colspan-sm="2"
@@ -173,7 +173,7 @@
 						</md-grid-tile-header>
 						<md-grid-tile-footer>
 							<span flex></span>
-							<font size="2"><pre> By, {{post.author}}</pre></font>
+							<font size="2"><pre> By, {{post.author}} | <span data-livestamp={{post.timestamp}}></span></pre></font>
 						</md-grid-tile-footer>
                 </md-grid-tile>
             </md-grid-list>
@@ -191,6 +191,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="js/livestamp.min.js"></script>
+
     <script src="index.js"></script>
 </body>
 </html>
