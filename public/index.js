@@ -104,11 +104,12 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', 'global
 					'						<md-option ng-value="4">Food</md-option>'+
 					'						<md-option ng-value="5">Misc</md-option>'+
 					'					</md-select>'+
-                    '       			<md-input-container ng-init="ctrl.new_post.password = null" flex>' +
-                    '           			<label>Password: to Delete Posts (e.g dog987)</label>' +
-                    '           			<input type="text" ng-model="ctrl.new_post.password">' +
-                    '       			</md-input-container>' +
 					'				</div>'+
+                    '       		<md-input-container ng-init="ctrl.new_post.password = null" flex>' +
+					'					<label><md-icon md-font-icon="fa-lock" class="fa s16 black class="md-raised"></md-icon> '+
+                    '           		&nbsp;Password protect your post (e.g dog987)</label>' +
+                    '   				<input type="text" ng-model="ctrl.new_post.password">' +
+                    '       		</md-input-container>' +
 					'				<span ng-init="urlHidden = false" ng-click="urlHidden = !urlHidden">'+
 					'          		<md-icon md-font-icon="fa-camera" class="fa s16 black class="md-raised"></md-icon> Insert image ' +
 					'				</span>'+
