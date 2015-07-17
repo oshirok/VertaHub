@@ -5,10 +5,19 @@ body {
 }
 
 .big-alert {
-    background-color: #ff0000;
+    background-color: #0000ff;
     height: 100%;
     width: 100%;
     color: white;
+    z-index: 100;
+}
+
+.big-alert-text {
+    font-size: 36px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
 }
 
 md-content.md-default-theme {

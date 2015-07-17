@@ -1,12 +1,27 @@
 ﻿var app = angular.module('StarterApp', ['ngMaterial']);
 
-app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', function ($http, $scope, $mdSidenav, $mdDialog) {
+
+/* Global service */
+app.service('globalService', function () {
+    this.Data = {
+        isActive: false
+    };
+    this.getAll = function () {
+        return this.Data;
+    };
+    this.activate = function () {
+        this.Data.isActive = true;
+    };
+});
+
+
+app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', 'globalService', function ($http, $scope, $mdSidenav, $mdDialog, globalService) {
         var alert;
         var new_post;
         $scope.showDialog = showDialog;
         $scope.items = [1, 2, 3];
         $scope.new_post = {};
-
+        
         $http.get('/api/posts')
         .success(function (data) {
             $scope.post_list = data;
@@ -32,6 +47,8 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
         .error(function (data) {
             console.log('Error: ' + data);
         });
+        
+        $scope.BigAlert = globalService.getAll();
 
         $scope.toggleSidenav = function (menuId) {
             $mdSidenav(menuId).toggle();
@@ -158,7 +175,8 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', functio
 				}
 					$mdDialog.hide();
 				})
-                .error(function (data) {
+                .error(function (error, status, headers, config) {
+                if(status == 403) globalService.activate();
                 console.log('Error: ' + data);
             });
         };
@@ -292,7 +310,7 @@ app.controller('newPostDialogController', function ($http, $scope, $mdDialog, $r
     };
 });
 
-app.controller('postDialogController', function ($http, $scope, $mdDialog, $rootScope, id) {
+app.controller('postDialogController', function ($http, $scope, $mdDialog, $rootScope, id, globalService) {
     //alert( this.closeDialog );
     //this.closeDialog = $scope.closeDialog;
     
@@ -310,8 +328,8 @@ app.controller('postDialogController', function ($http, $scope, $mdDialog, $root
             $scope.newComment = {};
             $scope.comments = data;
         }).error(function (error, status, headers, config) {
-            console.log(error + ', ' + status)
-            
+            console.log(error + ', ' + status);
+            globalService.activate();
         });
     };
     

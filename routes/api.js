@@ -103,8 +103,7 @@ router.post('/comments', function (req, res) {
         response.on('end', function () {
             var isProfane = JSON.parse(str).response == "true";
             if (isProfane) {
-                req.body.text = "[deleted by ADMIN]";
-                postComment();
+                res.send(403, "YOU HAVE BEEN TERMINATED");
             }
             else {
                 postComment();
@@ -176,6 +175,7 @@ router.post('/posts', function (req, res) {
             Post.find({}).sort({ timestamp: -1 }).exec(function (err, posts) {
                 if (err)
                     res.send(err);
+                else
                 //messages now shown from newest to oldest
                 res.json(posts);
             });
@@ -194,10 +194,7 @@ router.post('/posts', function (req, res) {
         response.on('end', function () {
             var isProfane = JSON.parse(str).response == "true";
             if (isProfane) {
-                req.body.name = "[Blocked by ADMIN]";
-                req.body.desc = "Please don't post profanity. Your IP Address " + req.connection.remoteAddress + " has been noted and forwarded to Law Enforcement. YOU WILL BE PROSECUTED!!!!!!!!!!!!!";
-                author = "ADMIN";
-                postToMongoose();
+                res.send(403, "YOU HAVE BEEN TERMINATED");
             }
             else {
                 postToMongoose();
