@@ -104,9 +104,9 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', 'global
 					'						<md-option ng-value="4">Food</md-option>'+
 					'						<md-option ng-value="5">Misc</md-option>'+
 					'					</md-select>'+
-                    '       			<md-input-container ng-init="ctrl.password = null" ng-if="ctrl.new_post.category==0" flex>' +
-                    '           			<label>Password</label>' +
-                    '           			<input type="text" ng-model="ctrl.password">' +
+                    '       			<md-input-container ng-init="ctrl.new_post.password = null" flex>' +
+                    '           			<label>Password: to Delete Posts (e.g dog987)</label>' +
+                    '           			<input type="text" ng-model="ctrl.new_post.password">' +
                     '       			</md-input-container>' +
 					'				</div>'+
 					'				<span ng-init="urlHidden = false" ng-click="urlHidden = !urlHidden">'+
@@ -126,7 +126,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', 'global
                     '    </md-button>' +
                     '  </div>' +
                     '  <div class="md-actions" >' +
-                    '    <md-button flex ng-if="ctrl.new_post.category!=0 || ctrl.password == 1234" ng-click="ctrl.submitDialog();btn = true"'+
+                    '    <md-button flex ng-if="ctrl.new_post.category!=0 || ctrl.new_post.password == 1134" ng-click="ctrl.submitDialog();btn = true"'+
 					'		ng-init="btn = false" ng-disabled="btn || ctrl.new_post.name == null">' +
                     '      Submit' +
                     '    </md-button>' +
