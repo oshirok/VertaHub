@@ -4,6 +4,8 @@ var http = require('http');
 var Event = require('../models/event.js')
 var Comment = require('../models/comment.js')
 var Post = require('../models/post.js')
+var server = http.Server(express());
+var io = require('socket.io')(server);
 
 /*
  * The API Routes page
@@ -172,6 +174,7 @@ router.post('/posts', function (req, res) {
             author: author,
             password: req.body.password
         }, function (err) {
+            io.sockets.emit('new_post');
             Post.find({}).sort({ timestamp: -1 }).exec(function (err, posts) {
                 if (err)
                     res.send(err);
@@ -213,6 +216,7 @@ router.delete('/posts', function (req, res) {
                     res.send(err);
                 else
                 Post.find({}).sort({ timestamp: -1 }).exec(function (err, posts) {
+                    io.sockets.emit('new_post');
                     if (err)
                         res.send(err);
                     else res.json(posts);
