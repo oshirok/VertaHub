@@ -119,6 +119,15 @@ router.post('/comments', function (req, res) {
 
 /* GET post listing. */
 router.get('/posts', function (req, res) {
+    Post.find({ expiration: { $gt: new Date().getTime() } }).sort({ timestamp: -1 }).exec(function (err, posts) {
+        if (err)
+            res.send(err);
+        res.json(posts);
+    });
+});
+
+/* GET post listing. */
+router.get('/allPosts', function (req, res) {
     Post.find({}).sort({ timestamp: -1 }).exec(function (err, posts) {
         if (err)
             res.send(err);
