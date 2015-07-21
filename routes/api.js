@@ -180,7 +180,7 @@ router.post('/posts', function (req, res) {
             password: req.body.password
         }, function (err) {
             io.sockets.emit('new_post');
-            Post.find({}).sort({ timestamp: -1 }).exec(function (err, posts) {
+            Post.find({ expiration: { $gt: new Date().getTime() } }).sort({ timestamp: -1 }).exec(function (err, posts) {
                 if (err)
                     res.send(err);
                 else
