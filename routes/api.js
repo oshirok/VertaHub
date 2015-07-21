@@ -153,11 +153,6 @@ callback = function (response) {
 router.post('/posts', function (req, res) {
     console.log(req.body);
     if (!req.body.name) res.send(403, "YOU HAVE BEEN TERMINATED");
-    var author = req.body.author;
-    if (!author) {
-        author = "Anonymous";
-    }
-    
     var options = {
         host: 'www.wdyl.com',
         path: '/profanity?q=' + encodeURIComponent(req.body.name) + "+" + encodeURIComponent(req.body.desc) + "+" + encodeURIComponent(req.body.author)
@@ -167,11 +162,12 @@ router.post('/posts', function (req, res) {
         Post.create({
             timestamp: new Date().getTime(),
             last_updated: new Date().getTime(),
+            expiration: req.body.expiration || new Date().getTime() + 604800000,
             name: req.body.name,
             desc: req.body.desc,
             imageURL: req.body.imageURL,
-            category: parseInt(req.body.category),
-            author: author,
+            category: parseInt(req.body.category) || 5,
+            author: req.body.author || "Anonymous",
             password: req.body.password
         }, function (err) {
             io.sockets.emit('new_post');
