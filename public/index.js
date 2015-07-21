@@ -104,6 +104,13 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', 'global
 					'						<md-option ng-value="4">Food</md-option>'+
 					'						<md-option ng-value="5">Misc</md-option>'+
 					'					</md-select>'+
+					'				    <p>Expire:</p>' +
+					'					<md-radio-group ng-init="ctrl.new_post.expiration = ctrl.returnTime(864)" '+
+					'						ng-model="ctrl.new_post.expiration">' +
+					'						<md-radio-button value="ctrl.returnTime(.3)" class="md-primary">1 day</md-radio-button>'+
+					'						<md-radio-button value="ctrl.returnTime(6048)"> 1 week </md-radio-button>' +
+					'						<md-radio-button value="ctrl.returnTime(26297)">1 month</md-radio-button>'+
+					'					</md-radio-group>'+
 					'				</div>'+
                     '       		<md-input-container ng-init="ctrl.new_post.password = null" flex>' +
 					'					<label><md-icon md-font-icon="fa-lock" class="fa s16 black class="md-raised"></md-icon> '+
@@ -191,7 +198,11 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', 'global
 			return colors[category];
         }
 
-		
+		$scope.returnTime = function returnTime(time){
+			var d = new Date().getTime();
+			d = d + (time * 100000);
+			return d;
+		}
         $scope.confirmDelete = function confirmDelete(id) {
             var password = prompt("Delete Post?", "");
             $http.delete('api/posts?id=' + id + '&password=' + password).success(function (data) {
