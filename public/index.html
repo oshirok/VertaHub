@@ -9,7 +9,7 @@
     <meta name="viewport" content="initial-scale=1" />
 </head>
 <body layout="column" ng-controller="AppCtrl" ng-init="all = true; number = 0">
-    <div class="big-alert" ng-show="BigAlert.isActive">
+    <div class="big-alert" ng-cloak ng-show="BigAlert.isActive">
         <div class="big-alert-text">
             You broke VertaBoard :( <br />please refrain from using profanity and/or <br /> avoid using Internet Explorer
         </div>
