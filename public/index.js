@@ -134,8 +134,6 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', 'global
                     '    <md-button flex ng-click="closeDialog()">' +
                     '      Close' +
                     '    </md-button>' +
-                    '  </div>' +
-                    '  <div class="md-actions" >' +
                     '    <md-button flex ng-if="ctrl.new_post.category!=0 || ctrl.new_post.password == 1134" ng-click="ctrl.new_post.expiration = ctrl.returnTime(expiration);ctrl.submitDialog();btn = true"'+
 					'		ng-init="btn = false" ng-disabled="btn || ctrl.new_post.name == null">' +
                     '      Submit' +
