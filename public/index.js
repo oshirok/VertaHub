@@ -73,7 +73,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', 'global
                 parent: parentEl,
                 targetEvent: $event,
                 template:
-                    '<md-dialog flex="40" aria-label="Sample Dialog">' + //Submit a post pop up
+                    '<md-dialog flex="40" aria-label="Sample Dialog" ng-init="expiration = "432">' + //Submit a post pop up
 					'	<md-toolbar>' +
 					'		<div class="md-toolbar-tools md-actions" layout="horizontal">' +
                     '       	<md-input-container flex>' +
@@ -95,7 +95,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', 'global
 					'		<div class="md-padding"> '+
 					'			<div>'+
 					'				<div layout="row">' +  // ADUJUST CATEGORIES HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-					'					<pre><h2>Category:  </h2> </pre>' +
+					'					<pre><h4>Category:  </h4> </pre>' +
 					'					<md-select ng-init="ctrl.new_post.category=5" ng-model="ctrl.new_post.category" >'+
 					'						<md-option ng-value="0">Admin</md-option>'+
 					'						<md-option ng-value="1">Recreation</md-option>'+
@@ -104,13 +104,15 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', 'global
 					'						<md-option ng-value="4">Food</md-option>'+
 					'						<md-option ng-value="5">Misc</md-option>'+
 					'					</md-select>'+
-					'				    <p>Expire:</p>' +
-					'					<md-radio-group ng-init="ctrl.new_post.expiration = ctrl.returnTime(864)" '+
-					'						ng-model="ctrl.new_post.expiration">' +
-					'						<md-radio-button value="ctrl.returnTime(.3)" class="md-primary">1 day</md-radio-button>'+
-					'						<md-radio-button value="ctrl.returnTime(6048)"> 1 week </md-radio-button>' +
-					'						<md-radio-button value="ctrl.returnTime(26297)">1 month</md-radio-button>'+
-					'					</md-radio-group>'+
+					'				    <pre><h4>Expire:  </h4> </pre>' +
+					'					<md-select placeholder="1 day" '+
+					'						ng-model="expiration">' +
+					'						<md-option ng-value=".3" >30 seconds</md-option>'+
+					'						<md-option ng-value="432"> 1 day </md-option>' +
+					'						<md-option ng-value="2592"> 3 days </md-option>' +
+					'						<md-option ng-value="6048"> 1 week </md-option>' +
+					'						<md-option ng-value="26297">1 month</md-option>'+
+					'					</md-select>'+
 					'				</div>'+
                     '       		<md-input-container ng-init="ctrl.new_post.password = null" flex>' +
 					'					<label><md-icon md-font-icon="fa-lock" class="fa s16 black class="md-raised"></md-icon> '+
@@ -134,7 +136,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', 'global
                     '    </md-button>' +
                     '  </div>' +
                     '  <div class="md-actions" >' +
-                    '    <md-button flex ng-if="ctrl.new_post.category!=0 || ctrl.new_post.password == 1134" ng-click="ctrl.submitDialog();btn = true"'+
+                    '    <md-button flex ng-if="ctrl.new_post.category!=0 || ctrl.new_post.password == 1134" ng-click="ctrl.new_post.expiration = ctrl.returnTime(expiration);ctrl.submitDialog();btn = true"'+
 					'		ng-init="btn = false" ng-disabled="btn || ctrl.new_post.name == null">' +
                     '      Submit' +
                     '    </md-button>' +
@@ -146,6 +148,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', 'global
                     new_post: $scope.new_post,
 					password:$scope.password,
                     closeDialog: $scope.closeDialog,
+					returnTime: $scope.returnTime,
                     submitDialog: $scope.submitDialog
                 },
                 bindToController: true,
