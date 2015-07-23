@@ -273,8 +273,8 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
                     '    <md-list-item class="md-3-line" ng-repeat="comment in comments">' +
                     '        <i class="fa fa-user md-avatar fa-3x"></i>' +
                     '        <div class="md-list-item-text">' +
-                    '           <h4>{{comment.text}}</h4>' +
-                    '           <p><span data-livestamp={{comment.timestamp}}></span></p>' +
+                    '           <pre>{{comment.text}}' +
+                    '           <p><i><span data-livestamp={{comment.timestamp}}></span></i></p></pre>' +
                     '        </div>' +
                     '    </md-list-item>' +
                     '    <md-divider ></md-divider>' +
