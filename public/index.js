@@ -73,7 +73,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', 'global
                 parent: parentEl,
                 targetEvent: $event,
                 template:
-                    '<md-dialog flex="40" aria-label="Sample Dialog" ng-init="expiration = "432">' + //Submit a post pop up
+                    '<md-dialog flex="40" aria-label="Sample Dialog" ng-init="expiration">' + //Submit a post pop up
 					'	<md-toolbar>' +
 					'		<div class="md-toolbar-tools md-actions" layout="horizontal">' +
                     '       	<md-input-container flex>' +
@@ -105,7 +105,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', 'global
 					'						<md-option ng-value="5">Misc</md-option>'+
 					'					</md-select>'+
 					'				    <pre><h4>Expire:  </h4> </pre>' +
-					'					<md-select placeholder="1 day" '+
+					'					<md-select placeholder="1 day"'+
 					'						ng-model="expiration">' +
 					'						<md-option ng-value=".3" >30 seconds</md-option>'+
 					'						<md-option ng-value="432"> 1 day </md-option>' +
@@ -201,6 +201,9 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', 'global
 
 		$scope.returnTime = function returnTime(time){
 			var d = new Date().getTime();
+			if(time == null){
+				time = 432;
+			}
 			d = d + (time * 100000);
 			return d;
 		}
