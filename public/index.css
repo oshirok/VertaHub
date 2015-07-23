@@ -217,3 +217,9 @@ pre{
 .fa-child{
 	color: #b388ff;
 }
+.click{
+	cursor:pointer;
+}
+*:focus {
+    outline: 0;
+}
