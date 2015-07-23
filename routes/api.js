@@ -228,7 +228,7 @@ router.delete('/posts', function (req, res) {
                 });
             });
         } else {
-            Post.find({}).sort({ timestamp: -1 }).exec(function (err, posts) {
+            Post.find({ expiration: { $gt: new Date().getTime() } }).sort({ timestamp: -1 }).exec(function (err, posts) {
                 if (err)
                     res.send(err);
                 else res.json(posts);
