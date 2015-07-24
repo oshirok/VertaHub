@@ -252,7 +252,7 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
                 parent: parentEl,
                 targetEvent: $event,
                 template:
-                    '<md-dialog flex="40"aria-label="{{ctrl.post.name}}">' + //Pop up post
+                    '<md-dialog flex-sm="100" md-gt-sm="60" aria-label="{{ctrl.post.name}}">' + //Pop up post
 					'	<form> ' +
 					'	<md-toolbar style="background-color:{{ctrl.post.color}}">' +
 					'		<div class="md-toolbar-tools md-actions" layout="horizontal">' +
