@@ -73,7 +73,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', 'global
                 parent: parentEl,
                 targetEvent: $event,
                 template:
-                    '<md-dialog flex="40" aria-label="Sample Dialog" ng-init="expiration">' + //Submit a post pop up
+                    '<md-dialog flex-sm="100" md-gt-sm="60" aria-label="Sample Dialog" ng-init="expiration">' + //Submit a post pop up
 					'	<md-toolbar>' +
 					'		<div class="md-toolbar-tools md-actions" layout="horizontal">' +
                     '       	<md-input-container flex>' +
