@@ -36,7 +36,7 @@ app.controller('AppCtrl', ['$rootScope', '$http', '$scope', '$mdSidenav', '$mdDi
                     $scope.post_list = data;
                 
                     console.log(data.length);
-                    var colors = ['#FF5200', "#00A3E0", "#009917", "#53565A", "#B90E2F", "#b388ff"];
+                    var colors = ['#FF5200', "#00A3E0", "#009917", "#53565A", "#B90E2F", "#b388ff",'#FF5200'];
                     for (var i = 0; i < $scope.post_list.length; i++) {
                         if ($scope.post_list[i].imageURL != null) {
                             $scope.post_list[i].background = "url('" + $scope.post_list[i].imageURL + "')"; //custom background
@@ -110,7 +110,7 @@ app.controller('AppCtrl', ['$rootScope', '$http', '$scope', '$mdSidenav', '$mdDi
 					'				<div layout="row">' +  // ADUJUST CATEGORIES HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 					'					<pre><h4>Category:  </h4> </pre>' +
 					'					<md-select ng-init="ctrl.new_post.category=5" ng-model="ctrl.new_post.category" >'+
-					'						<md-option ng-value="0">Admin</md-option>'+
+					'						<md-option ng-value="6">Admin</md-option>'+
 					'						<md-option ng-value="1">Recreation</md-option>'+
 					'						<md-option ng-value="2">Ad</md-option>'+
 					'						<md-option ng-value="3">Discussion</md-option>'+
@@ -147,7 +147,7 @@ app.controller('AppCtrl', ['$rootScope', '$http', '$scope', '$mdSidenav', '$mdDi
                     '    <md-button flex ng-click="closeDialog()">' +
                     '      Close' +
                     '    </md-button>' +
-                    '    <md-button flex ng-if="ctrl.new_post.category!=0 || ctrl.new_post.password == 1134" ng-click="ctrl.new_post.expiration = ctrl.returnTime(expiration);ctrl.submitDialog();btn = true"'+
+                    '    <md-button flex ng-if="ctrl.new_post.category!=6 || ctrl.new_post.password == 1134" ng-click="ctrl.new_post.expiration = ctrl.returnTime(expiration);ctrl.submitDialog();btn = true"'+
 					'		ng-init="btn = false" ng-disabled="btn || ctrl.new_post.name == null">' +
                     '      Submit' +
                     '    </md-button>' +
@@ -185,7 +185,7 @@ app.controller('AppCtrl', ['$rootScope', '$http', '$scope', '$mdSidenav', '$mdDi
                 // clear the form, allowing the user to send more messages
                 $scope.new_post = {};
                 console.log(data);
-				var colors = ['#FF5200',"#00A3E0","#009917","#53565A", "#B90E2F", "#b388ff"];
+				var colors = ['#FF5200',"#00A3E0","#009917","#53565A", "#B90E2F", "#b388ff",'#FF5200'];
 				for (var i = 0; i < $scope.post_list.length; i++) {
 					if($scope.post_list[i].imageURL != null){
 						$scope.post_list[i].background = "url('"+ $scope.post_list[i].imageURL + "')"; //custom background
@@ -209,7 +209,7 @@ app.controller('AppCtrl', ['$rootScope', '$http', '$scope', '$mdSidenav', '$mdDi
 				return 'rgba(0, 0, 0, 0.5)';
 			}
 			var colors = ['rgba(255, 82, 0,.8)', "rgba(0, 163, 224, .8)", "rgba(0, 153, 23, .8)",
-				"rgba(83, 86, 90, .8)", "rgba(185, 14, 47, .8)", "rgba(179, 136, 255, .8)"];
+				"rgba(83, 86, 90, .8)", "rgba(185, 14, 47, .8)", "rgba(179, 136, 255, .8)",'rgba(255, 82, 0,.8)'];
 			return colors[category];
         }
 
@@ -227,7 +227,7 @@ app.controller('AppCtrl', ['$rootScope', '$http', '$scope', '$mdSidenav', '$mdDi
                 $scope.post_list = data;
                 $mdDialog.hide();
                 console.log(data.length);
-                var colors = ['#FF5200', "#00A3E0", "#009917", "#53565A", "#B90E2F", "#b388ff"];
+                var colors = ['#FF5200', "#00A3E0", "#009917", "#53565A", "#B90E2F", "#b388ff",'#FF5200'];
                 for (var i = 0; i < $scope.post_list.length; i++) {
                     if ($scope.post_list[i].imageURL != null) {
                         $scope.post_list[i].background = "url('" + $scope.post_list[i].imageURL + "')"; //custom background
@@ -257,7 +257,7 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
 		}
 	}
 	function showDialog($event,post) {
-		var colors = ['#FF5200',"#00A3E0","#009917","#53565A", "#B90E2F", "#b388ff"];
+		var colors = ['#FF5200',"#00A3E0","#009917","#53565A", "#B90E2F", "#b388ff",'#FF5200'];
         $scope.post = post;
         $scope.post.color = colors[$scope.post.category];
 
