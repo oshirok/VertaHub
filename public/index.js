@@ -87,17 +87,16 @@ app.controller('AppCtrl', ['$rootScope', '$http', '$scope', '$mdSidenav', '$mdDi
                 parent: parentEl,
                 targetEvent: $event,
                 template:
-                    '<md-dialog flex-sm="100" md-gt-sm="60" aria-label="Sample Dialog" ng-init="expiration">' + //Submit a post pop up
+                    '<md-dialog flex="40" aria-label="Sample Dialog" ng-init="expiration">' + //Submit a post pop up
 					'	<md-toolbar>' +
-					'		<div class="md-toolbar-tools md-actions" layout="horizontal">' +
-                    '       	<md-input-container flex>' +
-                    '           	<label>Post Title</label>' +
-                    '           	<input ng-model="ctrl.new_post.name" md-maxlength="65">' +
-                    '       	</md-input-container>' +
-					'		</div> '+
+					'		<h5>&nbsp;Create a New Post</h5>' +
 					'	</md-toolbar>' +
                     '  <md-content>' +
                     '    <form name="userForm">' +
+                    '    	<md-input-container flex>' +
+                    '       	<label>Post Title</label>' +
+                    '           	<input ng-model="ctrl.new_post.name" md-maxlength="65">' +
+                    '       </md-input-container>' +
                     '       <md-input-container flex>' +
                     '           <label>Posted by</label>' +
                     '           <input ng-model="ctrl.new_post.author" md-maxlength="25">' +
