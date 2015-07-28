@@ -119,11 +119,19 @@ router.post('/comments', function (req, res) {
 
 /* GET post listing. */
 router.get('/posts', function (req, res) {
-    Post.find({ expiration: { $gt: new Date().getTime() } }).sort({ timestamp: -1 }).exec(function (err, posts) {
-        if (err)
-            res.send(err);
-        res.json(posts);
-    });
+    if (req.query.location) {
+        Post.find( {expiration: { $gt: new Date().getTime() }, $or: [{ location: req.query.location }, { location: "all" }, { location: { $exists: false } }] }).sort({ timestamp: -1 }).exec(function (err, posts) {
+            if (err)
+                res.send(err);
+            res.json(posts);
+        });
+    } else {
+        Post.find({ expiration: { $gt: new Date().getTime() } }).sort({ timestamp: -1 }).exec(function (err, posts) {
+            if (err)
+                res.send(err);
+            res.json(posts);
+        });
+    }
 });
 
 /* GET post listing. */
@@ -177,10 +185,11 @@ router.post('/posts', function (req, res) {
             imageURL: req.body.imageURL,
             category: parseInt(req.body.category) || 5,
             author: req.body.author || "Anonymous",
-            password: req.body.password
+            password: req.body.password,
+            location: req.body.location
         }, function (err) {
             io.sockets.emit('new_post');
-            Post.find({ expiration: { $gt: new Date().getTime() } }).sort({ timestamp: -1 }).exec(function (err, posts) {
+            Post.find({ expiration: { $gt: new Date().getTime() }, $or: [{ location: req.body.location }, { location: "all" }, { location: { $exists: false } }] }).sort({ timestamp: -1 }).exec(function (err, posts) {
                 if (err)
                     res.send(err);
                 else
@@ -220,7 +229,7 @@ router.delete('/posts', function (req, res) {
                 if (err)
                     res.send(err);
                 else
-                Post.find({}).sort({ timestamp: -1 }).exec(function (err, posts) {
+                Post.find({ expiration: { $gt: new Date().getTime() }, $or: [{ location: req.query.location }, { location: "all" }, { location: { $exists: false } }] }).sort({ timestamp: -1 }).exec(function (err, posts) {
                     io.sockets.emit('new_post');
                     if (err)
                         res.send(err);
@@ -228,7 +237,7 @@ router.delete('/posts', function (req, res) {
                 });
             });
         } else {
-            Post.find({ expiration: { $gt: new Date().getTime() } }).sort({ timestamp: -1 }).exec(function (err, posts) {
+            Post.find({ expiration: { $gt: new Date().getTime() }, $or: [{ location: req.query.location }, { location: "all" }, { location: { $exists: false } }] }).sort({ timestamp: -1 }).exec(function (err, posts) {
                 if (err)
                     res.send(err);
                 else res.json(posts);

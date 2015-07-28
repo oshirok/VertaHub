@@ -1,4 +1,6 @@
-﻿var app = angular.module('StarterApp', ['ngMaterial']);
+﻿
+
+var app = angular.module('StarterApp', ['ngMaterial']);
 
 
 /* Global service */
@@ -15,38 +17,50 @@ app.service('globalService', function () {
 });
 
 
-app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', 'globalService', function ($http, $scope, $mdSidenav, $mdDialog, globalService) {
+app.controller('AppCtrl', ['$rootScope', '$http', '$scope', '$mdSidenav', '$mdDialog', 'globalService', function ($rootScope, $http, $scope, $mdSidenav, $mdDialog, globalService) {
         var alert;
         var new_post;
         $scope.showDialog = showDialog;
         $scope.items = [1, 2, 3];
         $scope.new_post = {};
         
-        $http.get('/api/posts')
-        .success(function (data) {
-            $scope.post_list = data;
-            
-            console.log(data.length);
-            var colors = ['#FF5200',"#00A3E0","#009917","#53565A", "#B90E2F", "#b388ff"];
-            for (var i = 0; i < $scope.post_list.length; i++) {
-				if($scope.post_list[i].imageURL != null){
-					$scope.post_list[i].background = "url('"+ $scope.post_list[i].imageURL + "')"; //custom background
-				}
-				else{
-					$scope.post_list[i].background = colors[$scope.post_list[i].category];
-					console.log($scope.post_list[i].background);
-                }
-                $scope.post_list[i].mstimestamp = Date.parse($scope.post_list[i].timestamp) / 1000;
-            }
-			/*for(i in data){
-				console.log(i);
-				i.timestamp = new Date(parseInt(data.timestamp));
-			}
-            console.log(data);*/
-        })
-        .error(function (data) {
-            console.log('Error: ' + data);
-        });
+        
+        console.log('THIS LOCATION IS ' + $scope.location);
+        
+        $scope.init = function (location)
+        {
+            $rootScope.location = location;
+            console.log('LOCATION IS: ' + $rootScope.location);
+            $http.get('/api/posts?location=' + $rootScope.location)
+            .success(function (data) {
+                    $scope.post_list = data;
+                
+                    console.log(data.length);
+                    var colors = ['#FF5200', "#00A3E0", "#009917", "#53565A", "#B90E2F", "#b388ff"];
+                    for (var i = 0; i < $scope.post_list.length; i++) {
+                        if ($scope.post_list[i].imageURL != null) {
+                            $scope.post_list[i].background = "url('" + $scope.post_list[i].imageURL + "')"; //custom background
+                        }
+                        else {
+                            $scope.post_list[i].background = colors[$scope.post_list[i].category];
+                            console.log($scope.post_list[i].background);
+                        }
+                        $scope.post_list[i].mstimestamp = Date.parse($scope.post_list[i].timestamp) / 1000;
+                    }
+			    /*for(i in data){
+				    console.log(i);
+				    i.timestamp = new Date(parseInt(data.timestamp));
+			    }
+                console.log(data);*/
+                })
+            .error(function (data) {
+                    console.log('Error: ' + data);
+                });
+
+        }
+        
+
+        
         
         $scope.BigAlert = globalService.getAll();
 
@@ -56,7 +70,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', 'global
         
         $scope.$on('posted', function (event, args) { 
             console.log('broadcast recieved');
-            $http.get('/api/posts')
+            $http.get('/api/posts?location=' + $rootScope.location)
             .success(function (data) {
                 $scope.post_list = data;
 			    /*for(i in data){
@@ -164,6 +178,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', 'global
         $scope.submitDialog = function () {
             console.log('submit pressed!');
             console.log($scope.new_post);
+            $scope.new_post.location = $rootScope.location;
             $http.post('/api/posts', $scope.new_post)
                 .success(function (data) {
                 $scope.post_list.length = 0;
@@ -209,7 +224,7 @@ app.controller('AppCtrl', ['$http', '$scope', '$mdSidenav', '$mdDialog', 'global
 		}
         $scope.confirmDelete = function confirmDelete(id) {
             var password = prompt("Delete Post?", "");
-            $http.delete('api/posts?id=' + id + '&password=' + password).success(function (data) {
+            $http.delete('api/posts?id=' + id + '&password=' + password + '&location=' + $rootScope.location).success(function (data) {
                 $scope.post_list = data;
                 $mdDialog.hide();
                 console.log(data.length);

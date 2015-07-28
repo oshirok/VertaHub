@@ -28,7 +28,7 @@ app.use(cookieParser());
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/', routes); We use our own index.html homepage
+app.use('/', routes);
 app.use('/users', users);
 app.use('/api', api);
 
