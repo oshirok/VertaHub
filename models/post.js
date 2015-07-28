@@ -10,5 +10,6 @@ module.exports = mongoose.model('Post', {
     category: Number,
     author: String, 
     imageURL: String,
-    password: String
+    password: String,
+    location: String
 });
