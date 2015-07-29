@@ -116,7 +116,7 @@
       // THIS IS THE DYNAMIC POSTS BOX
       .gridPad
       .gridListdemoDynamicTiles(ng-controller='gridListDemoCtrl as vm', flex='')
-        md-grid-list(md-cols-sm='2', md-cols-md='2', md-cols-lg='6', md-cols-gt-lg='8', md-row-height-gt-md='1:1', md-row-height='4:3', md-gutter='8px', md-gutter-gt-sm='10px')
+        md-grid-list(md-cols-sm='2', md-cols-md='2', md-cols-lg='4', md-cols-gt-lg='8', md-row-height-gt-md='1:1', md-row-height='4:3', md-gutter='8px', md-gutter-gt-sm='10px')
           md-grid-tile.dynamicBox.hvr-grow(ng-repeat='post in post_list', ng-if='all == true || post.category == number', ng-click='showDialog($event,post)', md-rowspan='1', md-colspan='2', md-colspan-sm='2', ng-style="{'background': post.background, 'background-size': 'cover'}")
             md-icon(md-svg-icon='{{post.icon}}')
             md-grid-tile-header(ng-style="{'background-color':chooseBackground(post.category,post.imageURL)}")
