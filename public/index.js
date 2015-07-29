@@ -89,19 +89,19 @@ app.controller('AppCtrl', ['$rootScope', '$http', '$scope', '$mdSidenav', '$mdDi
                 template:
                     '<md-dialog flex="40" aria-label="Sample Dialog" ng-init="expiration=6048">' + //Submit a post pop up
 					'	<md-toolbar>' +
-					'		<h5>&nbsp;Create a New Post</h5>' +
+					'		<h4 style="margin: 20px">Create a New Post</h4>' +
 					'	</md-toolbar>' +
                     '  <md-content>' +
-                    '    <form name="userForm">' +
-                    '    	<md-input-container flex>' +
+                    '    <form name="userForm" margin-left="20px">' +
+                    '    	<md-input-container style="margin: 20px" flex>' +
                     '       	<label>Post Title</label>' +
                     '           	<input ng-model="ctrl.new_post.name" md-maxlength="65">' +
                     '       </md-input-container>' +
-                    '       <md-input-container flex>' +
+                    '       <md-input-container style="margin: 20px" flex>' +
                     '           <label>Posted by</label>' +
                     '           <input ng-model="ctrl.new_post.author" md-maxlength="25">' +
                     '       </md-input-container>' +
-                    '       <md-input-container flex>' +
+                    '       <md-input-container style="margin: 20px" flex>' +
                     '       <label>Description</label>' +
                     '       <textarea ng-model="ctrl.new_post.desc" columns="1" md-maxlength=""></textarea>' +
                     '       </md-input-container>' +
@@ -273,7 +273,7 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
 					'			<h2> {{ctrl.post.name}} </h2>' +
 					'			<span flex></span>' +
                     '    		<md-button ng-click="ctrl.confirmDelete(ctrl.post._id)">' + //Delete post
-                    '      			<md-icon md-font-icon="fa-edit" class="fa s16 white"></md-icon>' +
+                    '      			<md-icon md-font-icon="fa-trash-o" class="fa s16 white"></md-icon>' +
                     '    		</md-button>' +
 					'		</div> '+
 					'	</md-toolbar>' +
@@ -281,7 +281,7 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
 					'	<img src="{{ctrl.post.imageURL}}" style="max-width:100%; margin-left:auto; margin-right:auto;display:block;"> <br>' +
                     '  <md-divider></md-divider>' +
 					'	<font size="2"><i>Posted by:{{ctrl.post.author}} | <span data-livestamp={{ctrl.post.timestamp}}></span></i></font>'+
-					'	 <h5><pre>{{ctrl.post.desc}}</pre></h5>' +
+					'	 <span class="description"><pre>{{ctrl.post.desc}}</pre></span>' +
                     '    <md-list>' +
                     '    <md-subheader class="md-no-sticky">Comments</md-subheader>' +
                     '    <md-list-item class="md-3-line" ng-repeat="comment in comments">' +

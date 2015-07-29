@@ -223,3 +223,9 @@ pre{
 *:focus {
     outline: 0;
 }
+.inset{
+	width:40px;
+}
+.description{
+	font-size:18px;
+}
