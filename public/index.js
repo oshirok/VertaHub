@@ -87,7 +87,7 @@ app.controller('AppCtrl', ['$rootScope', '$http', '$scope', '$mdSidenav', '$mdDi
                 parent: parentEl,
                 targetEvent: $event,
                 template:
-                    '<md-dialog flex="40" aria-label="Sample Dialog" ng-init="expiration">' + //Submit a post pop up
+                    '<md-dialog flex="40" aria-label="Sample Dialog" ng-init="expiration=6048">' + //Submit a post pop up
 					'	<md-toolbar>' +
 					'		<h5>&nbsp;Create a New Post</h5>' +
 					'	</md-toolbar>' +
@@ -118,7 +118,7 @@ app.controller('AppCtrl', ['$rootScope', '$http', '$scope', '$mdSidenav', '$mdDi
 					'						<md-option ng-value="5">Misc</md-option>'+
 					'					</md-select>'+
 					'				    <pre><h4>Expire:  </h4> </pre>' +
-					'					<md-select placeholder="1 day"'+
+					'					<md-select placeholder="1 week"'+
 					'						ng-model="expiration">' +
 					'						<md-option ng-value=".3" >30 seconds</md-option>'+
 					'						<md-option ng-value="432"> 1 day </md-option>' +
