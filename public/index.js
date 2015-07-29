@@ -102,7 +102,7 @@ app.controller('AppCtrl', ['$rootScope', '$http', '$scope', '$mdSidenav', '$mdDi
                     '           <input ng-model="ctrl.new_post.author" md-maxlength="25">' +
                     '       </md-input-container>' +
                     '       <md-input-container flex>' +
-                    '       <label>Decsription</label>' +
+                    '       <label>Description</label>' +
                     '       <textarea ng-model="ctrl.new_post.desc" columns="1" md-maxlength=""></textarea>' +
                     '       </md-input-container>' +
 					'		<div class="md-padding"> '+
