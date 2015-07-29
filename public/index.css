@@ -101,6 +101,7 @@ body {
 .grid-item--width2 { width: 280px; }
 .gridListdemoDynamicTiles {
 	overflow-y: scroll;
+	cursor:pointer;
 }
 /* -------- above is outdated -----------*/
 

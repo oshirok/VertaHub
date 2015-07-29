@@ -297,7 +297,7 @@ app.controller('gridListDemoCtrl', function ($scope, $mdDialog) {
                     '    <label>Comment</label>' +
                     '    <textarea flex ng-model="newComment.text" columns="1" md-maxlength="150"></textarea>' +
                     '    </md-input-container>' +
-                    '    <md-button flex ng-click="submitComment()">' +
+                    '    <md-button class="md-raised" flex ng-click="submitComment()">' +
                     '      Submit' +
                     '    </md-button>' +
                     '    </form>' +
